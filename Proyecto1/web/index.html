@@ -10,10 +10,13 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-reboot.rtl.min.css" type="text/css"/>
+
         
     </head>
     <body>
         <!-- navbar -->
+        <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class = "navbar-brand" href="#">
@@ -30,63 +33,28 @@ and open the template in the editor.
                 
                 <div class = "col-md-4 text-end">
                     <form class="col-12 mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search...">
+                        <input type="search" class="form-control" placeholder="Search...">
                     </form>
                 </div>
                 
                 <div class="col-md-3 text-end">
          
                     <button type="button" class="btn btn-outline-light ">Login</button>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+                    <button type="button" class="btn btn-danger">Sign-up</button>
                 </div>
                 
                 
             </div>
         </nav>
+        </header>
+        <div class="p-5 mb-4 bg-secondary rounded-3">
+            <div class="container-fluid py-5">
+              <h1 class="display-5 fw-bold ">Custom jumbotron</h1>
+              <p class="col-md-8 fs-4 ">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+              <button class="btn btn-danger btn-lg" type="button">Inscribirse</button>
+            </div>
+        </div>
         
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#myCarousel"  data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#777"></rect>
-                </svg>
-
-                <div class="container">
-                  <div class="carousel-caption text-start">
-                    <h1>Registrate Ya!.</h1>
-                    <p>Registrate para ser parte de esta comunidad y para estar al tanto de las ofertas de cursos.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#">Registrarse</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#777">
-                </rect>
-                </svg>
-
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>Eche un vistazo a la oferta de cursos que manejamos!</h1>
-                    <p>En ella encontrará un catalogo de cursos de diversas categorias.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#">Ver cursos</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
         <!--<div id="carouselImages" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
