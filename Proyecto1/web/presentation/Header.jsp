@@ -1,5 +1,6 @@
 <!--Poner aqui el import -->
-
+<%@page import="cursos.logic.Usuario"%>
+<% Usuario usuario=  (Usuario) session.getAttribute("usuario");  %>
 <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">

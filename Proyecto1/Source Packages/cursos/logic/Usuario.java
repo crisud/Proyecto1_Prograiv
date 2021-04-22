@@ -19,6 +19,10 @@ public class Usuario implements java.io.Serializable{
        this.pass = pass;
        this.role = role;
     }
+
+    public Usuario() {
+       
+    }
    
     public String getId() {
         return this.id;
