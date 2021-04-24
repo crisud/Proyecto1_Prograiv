@@ -14,7 +14,7 @@
         <div class="p-5 mb-4 bg-secondary rounded-3">
             <div class="container-fluid py-5">
               <h1 class="display-5 fw-bold text-light">Matricule ya!</h1>
-              <p class="col-md-8 fs-4 text-light">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+              <p class="col-md-8 fs-4 text-light">En Cursoslibres.com ofrecemos un amplio catalogo de cursos los cuales van desde la cocina, tecnología, hasta arte, mejora como prefesional y aprende con los mejores profesionales! </p>
               <button class="btn btn-danger btn-lg" type="button">Inscribirse</button>
             </div>
         </div>

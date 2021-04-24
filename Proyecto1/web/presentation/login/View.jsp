@@ -17,7 +17,7 @@
         <form class = "" name="form" action="/Proyecto1/presentation/login/login" method="post" > 
             <div class="mx-auto" style="width: 400px;">
                 
-                <h2 class="font-weight-bold text-primary">Login</h2>
+                <h2 class="font-weight-bold text-danger">Login</h2>
                 <div class="container">
                     <div class="">Cedula</div>
                     <div class=""><input class="<%=erroneo("cedulaFld",errores)%>" placeholder="Cedula del usuario" type="text" name="cedulaFld" ></div>
@@ -30,7 +30,7 @@
                 </div>
                 <div style="margin-top:10px"></div>
                 <div class="container">
-                    <div class="row mb-3 px-3"><button class="btn btn-primary" style="margin-bottom: 15px">Ingresar</button> </div>
+                    <div class="row mb-3 px-3"><button class="btn btn-danger" style="margin-bottom: 15px">Ingresar</button> </div>
                 </div>
                     <%if( title("noexiste",errores) == "si"){ %>
                     <div class="alert alert-warning" role="alert">

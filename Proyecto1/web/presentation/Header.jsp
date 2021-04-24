@@ -1,4 +1,4 @@
-<!--Poner aqui el import -->
+
 <%@page import="cursos.logic.Usuario"%>
 <% Usuario usuario=  (Usuario) session.getAttribute("usuario");  %>
 <header>
@@ -11,7 +11,9 @@
                 <div class="collapse navbar-collapse" >
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                         <li class="nav-item"><a class="nav-link px-2 link-light" href = "/Proyecto1/presentation/Index.jsp">Home</a></li>
-                       
+                        <%if(usuario!=null){%>
+                            <li class="nav-item"><a class="nav-link px-2 link-light" href = "#">Bienvenido: <%usuario.getId();%></a></li>
+                        <%}%>
                     </ul>
                 </div>
                 
@@ -22,13 +24,14 @@
                 </div>
                 
                 <div class="col-md-3 text-end">
-                    <!--< if (usuario==null){>-->
-                    
-                    <!--< } >-->
-                    <!--< if (usuario==null){>-->
-                    <a type="button" class="btn btn-outline-light " href = "/Proyecto1/presentation/login/show">Login</a>
-                    <a type="button" class="btn btn-danger" href = "/Proyecto1/presentation/login/show">Sign-up</a>
-                    <!--< } >-->
+                    <% if (usuario!=null){%>
+                        <a type="button" class="btn btn-outline-light " href = "/Proyecto1/presentation/login/logout">Logout</a>
+                        <a type="button" class="btn btn-outline-danger " href = "/Proyecto1/presentation/login/login">Perfil</a>
+                    <% } %>
+                    <% if (usuario==null){%>
+                        <a type="button" class="btn btn-outline-light " href = "/Proyecto1/presentation/login/show">Login</a>
+                        <a type="button" class="btn btn-danger" href = "/Proyecto1/presentation/login/show">Sign-up</a>
+                    <% } %>
                 </div>
                 
                 
