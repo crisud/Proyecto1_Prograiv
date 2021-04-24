@@ -28,7 +28,7 @@
                         <h5 class="card-title">Pintura</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">ver detalles</a>
+                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         <h5 class="card-title">Pintura</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">ver detalles</a>
+                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                         <h5 class="card-title">Pintura</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">ver detalles</a>
+                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         <h5 class="card-title">Pintura</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">ver detalles</a>
+                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                         <h5 class="card-title">Pintura</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">ver detalles</a>
+                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Calef
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show","/presentation/login/login","/presentation/login/logout"})
+@WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show","/presentation/login/login","/presentation/login/logout","/presentation/login/signup"})
 public class Controller extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,6 +38,8 @@ public class Controller extends HttpServlet {
             case "/presentation/login/logout":
                 viewUrl=this.logout(request);
                 break;
+            case "/presentation/login/signup":
+                viewUrl=this.signup(request);
         }
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
@@ -127,13 +129,29 @@ public class Controller extends HttpServlet {
     }
         
     public String showAction(HttpServletRequest request){
-        Model model= (Model) request.getAttribute("model");
-        model.getCurrent().setId("");
-        model.getCurrent().setPass("");
+        //Model model= (Model) request.getAttribute("model");
+        
+        
         return "/presentation/login/View.jsp"; 
     }    
   
-
+//crear usuario
+    public String signup(HttpServletRequest request){
+        return this.signupAction(request);
+    }
+    
+    public String signupAction(HttpServletRequest request){
+        String id = request.getParameter("id");
+        String pass = request.getParameter("pass");
+        
+        Usuario usuario = new Usuario();
+        usuario.setId(id);
+        usuario.setPass(pass);
+        usuario.setTipo("Estudiante");
+        cursos.logic.Model  domainModel = cursos.logic.Model.instance();
+        domainModel.insertUser(usuario);
+        return "/presentation/Index.jsp"; 
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

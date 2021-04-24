@@ -11,9 +11,7 @@
                 <div class="collapse navbar-collapse" >
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                         <li class="nav-item"><a class="nav-link px-2 link-light" href = "/Proyecto1/presentation/Index.jsp">Home</a></li>
-                        <%if(usuario!=null){%>
-                            <li class="nav-item"><a class="nav-link px-2 link-light" href = "#">Bienvenido: <%usuario.getId();%></a></li>
-                        <%}%>
+                        
                     </ul>
                 </div>
                 
@@ -30,7 +28,7 @@
                     <% } %>
                     <% if (usuario==null){%>
                         <a type="button" class="btn btn-outline-light " href = "/Proyecto1/presentation/login/show">Login</a>
-                        <a type="button" class="btn btn-danger" href = "/Proyecto1/presentation/login/show">Sign-up</a>
+                        <a type="button" class="btn btn-danger" href = "/Proyecto1/presentation/login/Signup.jsp">Sign-up</a>
                     <% } %>
                 </div>
                 

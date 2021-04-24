@@ -14,7 +14,7 @@
         <% Model model = (Model) request.getAttribute("model"); %>
         <% Map<String, String> errores = (Map<String, String>) request.getAttribute("errores");%>
        <div style="margin-top:100px"></div>
-        <form class = "" name="form" action="/Proyecto1/presentation/login/login" method="post" > 
+        <form class = "" name="form-login" action="/Proyecto1/presentation/login/login" method="post" > 
             <div class="mx-auto" style="width: 400px;">
                 
                 <h2 class="font-weight-bold text-danger">Login</h2>
@@ -39,7 +39,8 @@
                     <% } %>
             </div>
         </form>
-
+        
+      </div>
     </body>
 </html>
 
