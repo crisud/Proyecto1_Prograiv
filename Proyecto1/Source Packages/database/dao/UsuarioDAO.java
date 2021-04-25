@@ -7,7 +7,6 @@ package database.dao;
 
 import database.AbstractDAO;
 import database.crud.UsuarioCRUD;
-import database.entidades.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
