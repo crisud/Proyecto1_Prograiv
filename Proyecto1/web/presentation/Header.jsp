@@ -24,7 +24,7 @@
                 <div class="col-md-3 text-end">
                     <% if (usuario!=null){%>
                         <a type="button" class="btn btn-outline-light " href = "/Proyecto1/presentation/login/logout">Logout</a>
-                        <a type="button" class="btn btn-outline-danger " href = "/Proyecto1/presentation/login/login">Perfil</a>
+                        <a type="button" class="btn btn-outline-danger " href = "/Proyecto1/presentation/persona/datos/profile">Perfil</a>
                     <% } %>
                     <% if (usuario==null){%>
                         <a type="button" class="btn btn-outline-light " href = "/Proyecto1/presentation/login/show">Login</a>

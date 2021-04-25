@@ -5,7 +5,7 @@
  */
 package cursos.presentation.login;
 
-import cursos.logic.Usuario;
+import cursos.logic.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Calef
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show","/presentation/login/login","/presentation/login/logout","/presentation/login/signup"})
+@WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show",
+    "/presentation/login/login","/presentation/login/logout","/presentation/login/signup"})
 public class Controller extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,6 +41,7 @@ public class Controller extends HttpServlet {
                 break;
             case "/presentation/login/signup":
                 viewUrl=this.signup(request);
+            
         }
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
@@ -93,10 +95,10 @@ public class Controller extends HttpServlet {
             String viewUrl="";
             switch(real.getTipo()){
                 case "Estudiante":
-                    viewUrl="/presentation/estudiante/estudiante.jsp";
+                    viewUrl="/presentation/usuario/estudiante.jsp";
                     break;
-                case "":
-                     viewUrl="";
+                case "Profesor":
+                     viewUrl="/presentation/usuario/profesor.jsp";
                     break;             
             }
             return viewUrl;
@@ -142,12 +144,11 @@ public class Controller extends HttpServlet {
     
     public String signupAction(HttpServletRequest request){
         String id = request.getParameter("id");
+        String name = request.getParameter("name");
         String pass = request.getParameter("pass");
-        
-        Usuario usuario = new Usuario();
-        usuario.setId(id);
-        usuario.setPass(pass);
-        usuario.setTipo("Estudiante");
+        String email = request.getParameter("email"); 
+        Integer tel = Integer.valueOf(request.getParameter("tel"));
+        Persona usuario = new Estudiante(id,name,new Usuario(id,pass,"Estudiante"),email,tel);
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         domainModel.insertUser(usuario);
         return "/presentation/Index.jsp"; 
