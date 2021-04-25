@@ -8,8 +8,7 @@
 <html>
     <head>
         <%@ include file="/presentation/Head.jsp" %>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Bienvenido al sistema de cursos libres!</title>
+        
     </head>
     <body>
         <%@ include file="/presentation/Header.jsp" %>
@@ -19,21 +18,21 @@
             <div class="p-2 mb-4 bg-secondary rounded-3">
                 <div class="container-fluid py-5">
                   <h1 class="display-5 fw-bold text-light">Mi información Personal</h1>
-                  <p class="col-md-8 fs-8 text-light">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                  <button class="btn btn-info btn-lg" type="button">Ver mi info</button>
+                  <p class="col-md-8 fs-8 text-light">Acceda a su información personal y editela si desea.</p>
+                  <a type="button" class="btn btn-info btn-lg" href = "/Proyecto1/presentation/person/update">Ver mi info</a>
                 </div>
             </div>
             <div class="p-2 mb-4 bg-secondary rounded-3">
                 <div class="container-fluid py-5">
                   <h1 class="display-5 fw-bold text-light">Mis Cursos Matriculados</h1>
-                  <p class="col-md-8 fs-8 text-light">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+                  <p class="col-md-8 fs-8 text-light">Échele un vistazo a los cursos que usted matriculó y su informacion respectiva.</p>
                   <button class="btn btn-primary btn-lg" type="button">Ver mis cursos</button>
                 </div>
             </div>
             <div class="p-2 mb-4 bg-secondary rounded-3">
                 <div class="container-fluid py-5">
                   <h1 class="display-5 fw-bold text-light">Mi historial de cursos</h1>
-                  <p class="col-md-8 fs-8 text-light">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+                  <p class="col-md-8 fs-8 text-light">Acceda a la información de cúales cursos matriculó atraves del tiempo y genere un informe.</p>
                   <button class="btn btn-warning btn-lg" type="button">Mi historial</button>
                 </div>
             </div>

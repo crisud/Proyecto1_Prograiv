@@ -8,9 +8,6 @@ package cursos.presentation.usuario.datos;
 import cursos.logic.Persona;
 import cursos.logic.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Hp
  */
-@WebServlet(name = "UsuarioDatosControlles", urlPatterns = {"/presentation/persona/datos/profile", "/presentation/profile/update"})
+@WebServlet(name = "UsuarioDatosControlles", urlPatterns = {"/presentation/person/profile",
+    "/presentation/person/update"})
 public class Controller extends HttpServlet {
 
  
@@ -31,11 +29,11 @@ public class Controller extends HttpServlet {
         request.setAttribute("model", new Model());
         String viewUrl="";     
         switch (request.getServletPath()) {
-          case "/presentation/persona/datos/profile":
+          case "/presentation/person/profile":
               viewUrl = this.profile(request);
               break;
-          case "/presentation/profile/update":
-            //  viewUrl = this.update(request);
+          case "/presentation/person/update":
+              viewUrl = this.update(request);
               break;              
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response);
@@ -60,13 +58,13 @@ public class Controller extends HttpServlet {
             String viewUrl="";
             switch(model.getTipoCuenta()){
                 case "Estudiante":
-                    viewUrl="/presentation/persona/estudiante/estudiante.jsp";
+                    viewUrl="/presentation/person/estudiante.jsp";
                     break;
                 case "Profesor":
-                    viewUrl="/presentation/persona/profesor/profesor.jsp";
+                    viewUrl="/presentation/person/profesor.jsp";
                     break; 
                 case "Administrador":
-                    viewUrl="/presentation/persona/administrador/administrador.jsp";
+                    viewUrl="/presentation/person/administrador.jsp";
                     break;
             }
             return viewUrl;
@@ -110,5 +108,12 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    public String update(HttpServletRequest request){
+        return this.updateAction(request);
+    }
+    
+    public String updateAction(HttpServletRequest request){
+        String viewUrl="/Proyecto1/presentation/View.jsp";
+        return viewUrl; 
+    }
 }

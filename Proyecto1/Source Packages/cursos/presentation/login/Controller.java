@@ -95,11 +95,13 @@ public class Controller extends HttpServlet {
             String viewUrl="";
             switch(real.getTipo()){
                 case "Estudiante":
-                    viewUrl="/presentation/usuario/estudiante.jsp";
+                    viewUrl="/presentation/person/estudiante.jsp";
                     break;
                 case "Profesor":
-                     viewUrl="/presentation/usuario/profesor.jsp";
-                    break;             
+                     viewUrl="/presentation/person/profesor.jsp";
+                    break;     
+                case "Administrador":
+                    viewUrl="/presentation/person/administrador.jsp";
             }
             return viewUrl;
             
