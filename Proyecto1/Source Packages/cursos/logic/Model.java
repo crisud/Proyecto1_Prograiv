@@ -29,9 +29,13 @@ public class Model {
         personas.put("333", new Administrador("333","A.sera",usuarios.get("333"),"ASera@gmail.com",12345448));
     }
     
-    public Usuario usuarioFind(String id,String clave) throws Exception{
-        if (usuarios.get(id)!=null)
-            return usuarios.get(id);
+    public Usuario usuarioFind(String id,String pass) throws Exception{
+        if (usuarios.get(id)!=null){
+            if(usuarios.get(id).getPass().equals(pass))
+               return usuarios.get(id);
+            else
+                throw new Exception("Contraseña incorrecta");
+        }
         else
             throw new Exception("Usuario no existe");
     }

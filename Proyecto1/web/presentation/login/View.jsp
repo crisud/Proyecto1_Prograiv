@@ -34,7 +34,7 @@
                 </div>
                     <%if( title("noexiste",errores) == "si"){ %>
                     <div class="alert alert-warning" role="alert">
-                        Registrate! <a href="#" class="alert-link"> Aquí </a>. En caso de no tener un cuenta.
+                        Registrate! <a href="/Proyecto1/presentation/login/Signup.jsp" class="alert-link"> Aquí </a>. En caso de no tener un cuenta.
                     </div>
                     <% } %>
             </div>

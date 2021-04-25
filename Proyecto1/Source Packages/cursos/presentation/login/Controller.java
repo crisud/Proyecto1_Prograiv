@@ -133,9 +133,9 @@ public class Controller extends HttpServlet {
     }
         
     public String showAction(HttpServletRequest request){
-        //Model model= (Model) request.getAttribute("model");
-        
-        
+        Model model= (Model) request.getAttribute("model");
+        model.getCurrent().setId("");
+        model.getCurrent().setPass("");
         return "/presentation/login/View.jsp"; 
     }    
   
