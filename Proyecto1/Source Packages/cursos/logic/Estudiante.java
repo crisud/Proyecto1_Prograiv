@@ -9,8 +9,12 @@ package cursos.logic;
  *
  * @author Hp
  */
-public class Estudiante extends Persona {
-    public Estudiante(String cedula, String nombre, Usuario usuario, String correo, Integer telefono) {
-        super(cedula, nombre, usuario, correo, telefono);
-    }
+public class Estudiante extends Usuario {
+   public Estudiante(String id, String pass, String role, String nombre, String correo, Integer telefono) {
+        super( id,  pass,  role,  nombre,  correo,  telefono);
+    
+   }
+   public Estudiante(){
+       
+   }
 }

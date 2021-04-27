@@ -9,10 +9,10 @@ package cursos.logic;
  *
  * @author Hp
  */
-public class Administrador extends Persona{
+public class Administrador extends Usuario{
 
-    public Administrador(String cedula, String nombre, Usuario usuario, String correo, Integer telefono) {
-        super(cedula, nombre, usuario, correo, telefono);
-    }
+   public Administrador(String id, String pass, String role, String nombre, String correo, Integer telefono) {
+        super( id,  pass,  role,  nombre,  correo,  telefono);
+   }
     
 }

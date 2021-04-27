@@ -150,11 +150,12 @@ public class Controller extends HttpServlet {
         String pass = request.getParameter("pass");
         String email = request.getParameter("email"); 
         Integer tel = Integer.valueOf(request.getParameter("tel"));
-        Persona usuario = new Estudiante(id,name,new Usuario(id,pass,"Estudiante"),email,tel);
+        Usuario usuario = new Estudiante(id,pass,"Estudiante",name,email,tel);
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         domainModel.insertUser(usuario);
         return "/presentation/Index.jsp"; 
     }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -195,3 +196,4 @@ public class Controller extends HttpServlet {
     }// </editor-fold>
 
 }
+

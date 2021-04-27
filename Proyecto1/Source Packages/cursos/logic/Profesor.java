@@ -9,12 +9,12 @@ package cursos.logic;
  *
  * @author Hp
  */
-public class Profesor extends Persona{
+public class Profesor extends Usuario{
     
     private String especialidad;
 
-    public Profesor(String especialidad, String cedula, String nombre, Usuario usuario, String correo, Integer telefono) {
-        super(cedula, nombre, usuario, correo, telefono);
+    public Profesor(String id, String pass, String role, String nombre, String correo, Integer telefono) {
+        super( id,  pass,  role,  nombre,  correo,  telefono);
         this.especialidad = especialidad;
     }
 

@@ -19,7 +19,7 @@
                 <div class="container-fluid py-5">
                   <h1 class="display-5 fw-bold text-light">Mi información Personal</h1>
                   <p class="col-md-8 fs-8 text-light">Acceda a su información personal y editela si desea.</p>
-                  <a type="button" class="btn btn-info btn-lg" href = "/Proyecto1/presentation/person/update">Ver mi info</a>
+                  <a href="/Proyecto1/presentation/estudiante/datos" class="btn btn-primary btn-lg" > Ver mi info</a>
                 </div>
             </div>
             <div class="p-2 mb-4 bg-secondary rounded-3">

@@ -10,20 +10,20 @@ import cursos.logic.*;
  * @author Hp
  */
 public class Model {
-    Persona current;
+    Usuario current;
 
     public Model() {
-        this.current = new Persona("","",new Usuario("","",""),"",0);
+        this.current = new Usuario("", "", "", "", "", 0);
     }
 
     
-    public Persona getCurrent() {
+    public Usuario getCurrent() {
         return current;
     }
 
     public String getTipoCuenta(){return getCurrent().getUsuario().getTipo();}
     
-    public void setCurrent(Persona current) {
+    public void setCurrent(Usuario current) {
         this.current = current;
     }
 }

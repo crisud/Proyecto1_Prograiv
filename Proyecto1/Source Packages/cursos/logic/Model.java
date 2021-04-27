@@ -14,19 +14,18 @@ public class Model {
     }
     
     HashMap<String,Usuario> usuarios;
-    HashMap<String,Persona> personas;
+  
     
     
     private Model(){
         usuarios = new HashMap();
-        usuarios.put("111", new Usuario("111","111","Estudiante"));
-        usuarios.put("222", new Usuario("222","222","Profesor"));
-        usuarios.put("333", new Usuario("333","333","Administrador"));
         
-        personas = new HashMap();
-        personas.put("111", new Estudiante("111","J.Perez",usuarios.get("111"),"JPerez@gmail.com",12345678));
-        personas.put("222", new Profesor("Pintura","222","A.Cortes",usuarios.get("222"),"ACortes@gmail.com",83472332));
-        personas.put("333", new Administrador("333","A.sera",usuarios.get("333"),"ASera@gmail.com",12345448));
+        //(String id, String pass, String role, String cedula, String nombre, String correo, Integer telefono)
+        
+        usuarios.put("111", new Usuario("111","111","Estudiante","J.Perez","JPerez@gmail.com",12345678));
+        usuarios.put("222", new Usuario("222","222","Profesor","A.Cortes","ACortes@gmail.com",88842828));
+        usuarios.put("333", new Usuario("333","333","Administrador","B.Diaz","BDiaz@gmail.com",78654556));
+        
     }
     
     public Usuario usuarioFind(String id,String pass) throws Exception{
@@ -40,15 +39,14 @@ public class Model {
             throw new Exception("Usuario no existe");
     }
      
-    public Persona personaFind(Usuario usuario) throws Exception{
-        if(personas.get(usuario.getId())!=null)
-            return personas.get(usuario.getId());
+    public Usuario personaFind(Usuario usuario) throws Exception{
+        if(usuarios.get(usuario.getId())!=null)
+            return usuarios.get(usuario.getId());
         else
             throw new Exception("Usuario no existe");
     }
     
-    public void insertUser(Persona persona){
-        usuarios.put(persona.getCedula(),persona.getUsuario());
-        personas.put(persona.getCedula(), persona);
+    public void insertUser(Usuario persona){   
+        usuarios.put(persona.getId(), persona);
     }
 }

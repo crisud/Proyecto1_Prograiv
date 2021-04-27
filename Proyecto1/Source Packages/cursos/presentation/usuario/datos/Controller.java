@@ -5,7 +5,6 @@
  */
 package cursos.presentation.usuario.datos;
 
-import cursos.logic.Persona;
 import cursos.logic.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -49,7 +48,7 @@ public class Controller extends HttpServlet {
         cursos.logic.Model domainModel = cursos.logic.Model.instance();
         HttpSession session = request.getSession(true);
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        Persona cliente;
+        Usuario cliente;
         try {
             cliente = domainModel.personaFind(usuario);
         } catch (Exception ex) { cliente=null; }
