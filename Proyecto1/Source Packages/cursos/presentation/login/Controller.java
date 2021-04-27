@@ -89,6 +89,7 @@ public class Controller extends HttpServlet {
         Model model= (Model) request.getAttribute("model");
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         HttpSession session = request.getSession(true);
+        
         try {
             Usuario real = domainModel.usuarioFind(model.getCurrent().getId(),model.getCurrent().getPass());
             session.setAttribute("usuario", real);

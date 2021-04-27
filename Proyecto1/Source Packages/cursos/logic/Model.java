@@ -39,12 +39,13 @@ public class Model {
             throw new Exception("Usuario no existe");
     }
      
-    public Usuario personaFind(Usuario usuario) throws Exception{
-        if(usuarios.get(usuario.getId())!=null)
-            return usuarios.get(usuario.getId());
+    public Usuario personaFind(String id) throws Exception{
+         if (usuarios.get(id)!=null){
+             return usuarios.get(id);
+         }
         else
             throw new Exception("Usuario no existe");
-    }
+    } 
     
     public void insertUser(Usuario persona){   
         usuarios.put(persona.getId(), persona);

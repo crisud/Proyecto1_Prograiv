@@ -5,12 +5,15 @@
  */
 package cursos.presentation.estudiante;
 
+import cursos.logic.Estudiante;
+import cursos.logic.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -50,8 +53,34 @@ public class Controller extends HttpServlet {
     }
     
     public String datosAction(HttpServletRequest request){
-       String viewUrl="/presentation/estudiante/datos/datos.jsp";
-        return viewUrl; 
+        try {
+            HttpSession session = request.getSession(true);
+            Usuario usua = (Usuario) session.getAttribute("usuario");
+           
+            
+            //Aqui iría la recuperacion con la base de datos
+            cursos.logic.Model  domainModel = cursos.logic.Model.instance();
+            Usuario usu = domainModel.personaFind(usua.getId()); //Tiene que ser estudianteFind
+            
+            String id =  usu.getId();
+            String name =  usu.getNombre();
+            String pass =  usu.getPass();
+            String email =  usu.getCorreo();
+            Integer tel =  usu.getTelefono();
+
+            Estudiante estudiante = new Estudiante(id,pass,"Estudiante",name,email, tel);
+            Model mo = new Model();
+            mo.setCurrent(estudiante);
+            request.setAttribute("modelEstu", mo);
+
+            String viewUrl="/presentation/estudiante/datos/datos.jsp";
+            return viewUrl;
+        
+        } catch (Exception e) {
+            String viewUrl="/presentation/Error.jsp";
+            return viewUrl; 
+        }
+       
     }
     
     //actulizar datos del estudiante (Preguntar)
