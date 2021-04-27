@@ -13,7 +13,7 @@ public class Profesor extends Usuario{
     
     private String especialidad;
 
-    public Profesor(String id, String pass, String role, String nombre, String correo, Integer telefono) {
+    public Profesor(String id, String pass, String role, String nombre, String correo, Integer telefono, String especialidad) {
         super( id,  pass,  role,  nombre,  correo,  telefono);
         this.especialidad = especialidad;
     }

@@ -15,21 +15,21 @@
         
         <div class = " row row-cols-2 row-cols-sm-2 row-cols-md-3 g-2">
             
-            <div class="p-2 mb-4 bg-secondary rounded-3">
+            <div class="p-2 mb-4 bg-secondary ">
                 <div class="container-fluid py-5">
                   <h1 class="display-5 fw-bold text-light">Mi información Personal</h1>
                   <p class="col-md-8 fs-8 text-light">Acceda a su información personal y editela si desea.</p>
                   <a href="/Proyecto1/presentation/estudiante/datos" class="btn btn-primary btn-lg" > Ver mi info</a>
                 </div>
             </div>
-            <div class="p-2 mb-4 bg-secondary rounded-3">
+            <div class="p-2 mb-4 bg-secondary ">
                 <div class="container-fluid py-5">
                   <h1 class="display-5 fw-bold text-light">Mis Cursos Matriculados</h1>
                   <p class="col-md-8 fs-8 text-light">Échele un vistazo a los cursos que usted matriculó y su informacion respectiva.</p>
                   <button class="btn btn-primary btn-lg" type="button">Ver mis cursos</button>
                 </div>
             </div>
-            <div class="p-2 mb-4 bg-secondary rounded-3">
+            <div class="p-2 mb-4 bg-secondary ">
                 <div class="container-fluid py-5">
                   <h1 class="display-5 fw-bold text-light">Mi historial de cursos</h1>
                   <p class="col-md-8 fs-8 text-light">Acceda a la información de cúales cursos matriculó atraves del tiempo y genere un informe.</p>

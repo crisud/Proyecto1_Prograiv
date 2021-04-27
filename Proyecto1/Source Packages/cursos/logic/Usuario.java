@@ -15,7 +15,6 @@ public class Usuario {
     private String pass;
     private String role;
     private String nombre;
-    private Usuario usuario;
     private String correo;
     private Integer telefono;
 
@@ -66,14 +65,6 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public String getCorreo() {
         return correo;
     }
@@ -90,8 +81,6 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public String getTipoCuenta() {
-        return getUsuario().getTipo();
-    }
+  
 
 }

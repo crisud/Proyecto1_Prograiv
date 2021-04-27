@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author Calef
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show",
-    "/presentation/login/login","/presentation/login/logout","/presentation/login/signup"})
+    "/presentation/login/login","/presentation/login/logout","/presentation/login/signup","/presentation/home"})
 public class Controller extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,6 +41,8 @@ public class Controller extends HttpServlet {
                 break;
             case "/presentation/login/signup":
                 viewUrl=this.signup(request);
+            case "/presentation/home":
+                viewUrl=this.home(request);
             
         }
         request.getRequestDispatcher(viewUrl).forward( request, response); 
@@ -157,7 +159,9 @@ public class Controller extends HttpServlet {
         return "/presentation/Index.jsp"; 
     }
     
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    public String home(HttpServletRequest request){
+        return "/presentation/Index.jsp";
+    }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -21,7 +21,7 @@ public class Model {
         return current;
     }
 
-    public String getTipoCuenta(){return getCurrent().getUsuario().getTipo();}
+    public String getTipoCuenta(){return getCurrent().getTipo();}
     
     public void setCurrent(Usuario current) {
         this.current = current;
