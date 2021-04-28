@@ -9,7 +9,7 @@ import database.AbstractCRUD;
 
 /**
  *
- * @author USER
+ * @author cristopher
  */
 public class GrupoCRUD extends AbstractCRUD
 {

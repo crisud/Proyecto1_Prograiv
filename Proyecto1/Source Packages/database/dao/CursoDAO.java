@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author USER
+ * @author cristopher
  */
 public class CursoDAO extends AbstractDAO<database.entidades.Curso>
 {
@@ -54,33 +54,5 @@ public class CursoDAO extends AbstractDAO<database.entidades.Curso>
         stm.setDouble(3, value.getPrecio());
         stm.setBoolean(4, value.getEnOferta());
         stm.setString(5, value.getId());
-    }
-    
-    public static void main(String[] args)
-    {
-        //new Usuario_DAO().add(u.getNombre(), new modelo.entidades.Usuario(u.getNombre(),
-                //u.getNombreCompleto(), u.getClave(), u.getUltimoAcceso()));
-        
-        CursoDAO curso = new CursoDAO();
-        
-        //database.entidades.Curso enti = new database.entidades.Curso("id1", "nombre1", "tematica1", 233, true);
-       // try
-        //{
-        //    curso.registar(enti);
-        //}catch(IOException | SQLException ex)
-        //{
-        //    System.err.println(ex.getMessage());
-       // }
-        database.entidades.Curso enti = null;
-       try
-        {
-           enti = curso.buscar("id1");
-        }catch(IOException | SQLException ex)
-        {
-            System.err.println(ex.getMessage());
-        }
-       
-       if(enti != null)
-           System.out.println("encontrado");
     }
 }

@@ -16,6 +16,7 @@ public class Profesor extends Usuario{
     public Profesor(String id, String pass, String role, String nombre, String correo, Integer telefono, String especialidad) {
         super( id,  pass,  role,  nombre,  correo,  telefono);
         this.especialidad = especialidad;
+      
     }
 
     public String getEspecialidad() {
@@ -25,6 +26,4 @@ public class Profesor extends Usuario{
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-    
-    
 }

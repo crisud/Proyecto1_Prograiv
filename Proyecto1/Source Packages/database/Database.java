@@ -13,7 +13,7 @@ import java.util.Properties;
 
 /**
  *
- * @author USER
+ * @author cristopher
  */
 public class Database extends MysqlDataSource {
 
