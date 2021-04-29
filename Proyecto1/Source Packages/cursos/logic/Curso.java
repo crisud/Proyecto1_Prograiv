@@ -24,10 +24,18 @@ public class Curso
         this.enOferta = enOferta;
     }
   
+    public Curso(){
+        
+    }
     
     public String getId()
     {
         return id;
+    }
+    
+    public String getNombre()
+    {
+        return nombre;
     }
     
     private String id;

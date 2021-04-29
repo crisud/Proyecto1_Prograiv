@@ -18,6 +18,9 @@ public class Profesor extends Usuario{
         this.especialidad = especialidad;
       
     }
+    public Profesor(){
+    
+    }
 
     public String getEspecialidad() {
         return especialidad;

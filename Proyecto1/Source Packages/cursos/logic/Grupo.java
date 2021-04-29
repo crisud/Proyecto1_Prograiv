@@ -23,9 +23,30 @@ public class Grupo
         this.curso = curso;
     }
     
+    public Grupo(){
+        
+    }
+    
     public String getId()
     {
         return id;
+    }
+    
+    public String getHorario(){
+        return horario;
+    }
+    
+     public String getNomProfesor(){
+         if(profesor!=null)
+             return profesor.getNombre();
+         return "Null";
+    }
+    
+    public String getNombreCurso(){
+        if(curso!=null)
+            return curso.getNombre();
+        else
+            return "Null";
     }
     
     public void ingresarEstudiantes(Estudiante e)

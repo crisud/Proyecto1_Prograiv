@@ -18,11 +18,24 @@ public class Matricula
         this.nota = nota;
     }
     
+    public Matricula(){
+        
+    }
+    
     public Estudiante getEstudiante()
     {
         return estudiante;
     }
     
+    public Grupo getGrupo()
+    {
+        return grupo;
+    }
+
+    public Double getNota()
+    {
+        return nota;
+    }
     private Estudiante estudiante;
     private Grupo grupo;
     private Double nota;

@@ -6,8 +6,11 @@
 package cursos.presentation.estudiante;
 
 import cursos.logic.Estudiante;
+import cursos.logic.Matricula;
 import cursos.logic.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -99,8 +102,24 @@ public class Controller extends HttpServlet {
     }
     
     public String cursosAction(HttpServletRequest request){
-        String viewUrl="/Proyecto1/presentation/View.jsp";
-        return viewUrl; 
+       try {
+            HttpSession session = request.getSession(true);
+            Usuario usua = (Usuario) session.getAttribute("usuario");
+            String id = usua.getId();
+            
+            //Aqui iría la recuperacion con la base de datos
+            cursos.logic.Model  domainModel = cursos.logic.Model.instance();
+            List<Matricula> matriculas = domainModel.getMatriculas("111"); //Tiene que ser estudianteFind
+            
+            request.setAttribute("listaCursos", matriculas);
+
+            String viewUrl="/presentation/estudiante/cursos/cursos.jsp";
+            return viewUrl;
+        
+        } catch (Exception e) {
+            String viewUrl="/presentation/Error.jsp";
+            return viewUrl; 
+        }
     }
 
     //historial del estudiante
@@ -109,7 +128,7 @@ public class Controller extends HttpServlet {
     }
     
     public String historialAction(HttpServletRequest request){
-        String viewUrl="/Proyecto1/presentation/View.jsp";
+        String viewUrl="/presentation/estudiante/historial/historial.jsp";
         return viewUrl; 
     }
 
