@@ -59,6 +59,7 @@ public abstract class AbstractDAO<T> implements DAO<T>
                 }
             }
         }
+        
         return r;
     }
 

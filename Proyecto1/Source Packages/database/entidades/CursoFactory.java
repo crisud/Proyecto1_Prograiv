@@ -65,19 +65,19 @@ public class CursoFactory
     }
 
 
-    public static void main(String[] args)
-    {
-        List<cursos.logic.Curso> cursos = null;
-       
-        cursos = listarCursos();
-        
-        if (cursos != null)
-        {
-            for(cursos.logic.Curso curso: cursos)
-            System.out.printf("Curso id: %s%n",curso.getId());
-            
-        }
-    }
+//    public static void main(String[] args)
+//    {
+//        List<cursos.logic.Curso> cursos = null;
+//       
+//        cursos = listarCursos();
+//        
+//        if (cursos != null)
+//        {
+//            for(cursos.logic.Curso curso: cursos)
+//            System.out.printf("Curso id: %s%n",curso.getId());
+//            
+//        }
+//    }
 
 
     private final static database.dao.GrupoDAO grupoDAO = new database.dao.GrupoDAO();

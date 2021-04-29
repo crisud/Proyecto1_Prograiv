@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 public class Database extends MysqlDataSource {
 
-    private Database() throws IOException {
+    private Database() throws IOException, SQLException {
         this.configuration = new Properties();
         configuration.load(getClass().getResourceAsStream(CONFIGURATION_PATH));
 
@@ -28,6 +28,7 @@ public class Database extends MysqlDataSource {
         ));
         setUser(this.configuration.getProperty("user"));
         setPassword(this.configuration.getProperty("password"));
+        setUseSSL(false);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class Database extends MysqlDataSource {
         return super.getConnection();
     }
 
-    public static Database getInstance() throws IOException {
+    public static Database getInstance() throws IOException, SQLException {
         if (instance == null) {
             try {
                 instance = new Database();

@@ -6,6 +6,7 @@
 package cursos.presentation.login;
 
 import cursos.logic.*;
+import database.entidades.UsuarioFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -93,7 +94,7 @@ public class Controller extends HttpServlet {
         HttpSession session = request.getSession(true);
         
         try {
-            Usuario real = domainModel.usuarioFind(model.getCurrent().getId(),model.getCurrent().getPass());
+            Usuario real = domainModel.usuarioFindPass(model.getCurrent().getId(),model.getCurrent().getPass());
             session.setAttribute("usuario", real);
             String viewUrl="";
             switch(real.getTipo()){
@@ -153,7 +154,7 @@ public class Controller extends HttpServlet {
         String pass = request.getParameter("pass");
         String email = request.getParameter("email"); 
         Integer tel = Integer.valueOf(request.getParameter("tel"));
-        Usuario usuario = new Estudiante(id,pass,"Estudiante",name,email,tel);
+        Estudiante usuario = new Estudiante(id,pass,"Estudiante",name,email,tel);
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         domainModel.insertUser(usuario);
         return "/presentation/Index.jsp"; 

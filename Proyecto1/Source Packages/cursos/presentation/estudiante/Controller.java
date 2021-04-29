@@ -63,7 +63,7 @@ public class Controller extends HttpServlet {
             
             //Aqui iría la recuperacion con la base de datos
             cursos.logic.Model  domainModel = cursos.logic.Model.instance();
-            Usuario usu = domainModel.personaFind(usua.getId()); //Tiene que ser estudianteFind
+            Usuario usu = domainModel.usuarioFind(usua.getId()); //Tiene que ser estudianteFind
             
             String id =  usu.getId();
             String name =  usu.getNombre();
@@ -86,7 +86,7 @@ public class Controller extends HttpServlet {
        
     }
     
-    //actulizar datos del estudiante (Preguntar)
+    //actulizar datos del estudiante (Preguntar) //ño ñacer
     public String update(HttpServletRequest request){
         return this.updateAction(request);
     }
@@ -109,7 +109,7 @@ public class Controller extends HttpServlet {
             
             //Aqui iría la recuperacion con la base de datos
             cursos.logic.Model  domainModel = cursos.logic.Model.instance();
-            List<Matricula> matriculas = domainModel.getMatriculas("111"); //Tiene que ser estudianteFind
+            List<Matricula> matriculas = domainModel.getMatriculas(id); //Tiene que ser base
             
             request.setAttribute("listaCursos", matriculas);
 

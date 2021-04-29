@@ -19,8 +19,8 @@ import java.util.List;
 public class MatriculaFactory
 {
 
-    public static List<cursos.logic.Estudiante> recuperarEstuMatricula(String id_grupo)
-            throws SQLException, IOException //recuperar estu en base del grupo - falta recuperar matri con estu
+    public static List<cursos.logic.Estudiante> recuperarEstudianteConIDGrupo(String id_grupo)
+            throws SQLException, IOException //recuperar estu en base del grupo - (busca en las matriculas)
     {
         List<cursos.logic.Estudiante> estu = new ArrayList<>();
         List<database.entidades.Matricula> matriculas= matriculaDAO.ListarIDGrupo(id_grupo);
@@ -33,6 +33,41 @@ public class MatriculaFactory
         return estu;
     }
 
+    public static List<cursos.logic.Matricula> recuperarMatricula(String id_estudiante)
+            throws SQLException, IOException //recuperar las matriculas del estu con su id 
+    {
+        List<cursos.logic.Matricula> matriculas = listarMatriculas(); //todas las matri de la base
+        List<cursos.logic.Matricula> matriculasAux = new ArrayList<>(); // se agrega las que el id del estu por buscar sea igual 
+        
+        for (cursos.logic.Matricula m : matriculas)
+        {
+            if(m.getEstudiante().getId().equals(id_estudiante))
+                matriculasAux.add(m);
+        }
+
+        return matriculasAux;
+    }
+    
+    public static List<cursos.logic.Matricula> listarMatriculas()
+    {
+        List<cursos.logic.Matricula> matriculas = new ArrayList<>();
+        
+        try
+        {
+            for(database.entidades.Matricula m: matriculaDAO.listarTodos())
+            {
+                matriculas.add(crearMatricula(m));
+            }
+        }
+        catch(IOException | SQLException ex)
+        {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+                
+        return matriculas;
+    }
+    
+    
     public static cursos.logic.Matricula crearMatricula(database.entidades.Matricula matricula) throws SQLException, IOException
     {
         cursos.logic.Matricula matri = null;
@@ -49,6 +84,20 @@ public class MatriculaFactory
         return matri;
     }
 
-
+//public static void main(String[] args)
+//    {
+//        List<cursos.logic.Matricula> matri = null;
+//       
+//        matri = listarMatriculas();
+//        
+//        if (matri != null)
+//        {
+//            for(cursos.logic.Matricula curso: matri)
+//            System.out.printf("Matri id: %s%n",curso.getEstudiante().getNombre());
+//            
+//        }
+//    }
+    
+    
     private static final MatriculaDAO matriculaDAO = new MatriculaDAO();
 }

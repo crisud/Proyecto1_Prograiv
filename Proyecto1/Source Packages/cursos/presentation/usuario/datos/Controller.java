@@ -50,7 +50,7 @@ public class Controller extends HttpServlet {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         Usuario cliente;
         try {
-            cliente = domainModel.personaFind(usuario.getId());
+            cliente = domainModel.usuarioFind(usuario.getId());
         } catch (Exception ex) { cliente=null; }
         try {        
             model.setCurrent(cliente);

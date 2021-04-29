@@ -25,7 +25,7 @@
         <div style="margin-top:25px"></div> 
         
         <%if(matriculas!=null){%>
-            <%for (Matricula ma : matriculas) {%>
+            <% for (Matricula ma : matriculas) {%>
                 <div class="mx-auto" style="width: 800px">
                     <div class="card">
                         <div class="card-header">

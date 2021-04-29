@@ -35,45 +35,81 @@ public class UsuarioFactory
         String rol = usuario.getRol();
         cursos.logic.Usuario u = null;
 
-        if (usuario != null)
+        switch (rol)
         {
-            switch (rol)
-            {
-                case "Administrador":
-                    u = new Administrador(usuario.getId(),
-                            usuario.getContrasena(),
-                            usuario.getRol(),
-                            usuario.getNombre(),
-                            usuario.getCorreo(),
-                            usuario.getTelefono()
-                    );
-                    break;
-                case "Profesor":
-                    //List<cursos.logic.Grupo> grupos = new ArrayList<>();
-                    u = new Profesor(usuario.getId(),
-                            usuario.getContrasena(),
-                            usuario.getRol(),
-                            usuario.getNombre(),
-                            usuario.getCorreo(),
-                            usuario.getTelefono(),
-                            usuario.getEspecialidad()
-                    );
-                    break;
-                case "Estudiante":
-                    u = new Estudiante(usuario.getId(),
-                            usuario.getContrasena(),
-                            usuario.getRol(),
-                            usuario.getNombre(),
-                            usuario.getCorreo(),
-                            usuario.getTelefono()
-                    );
-                   
-                    break;
+            case "Administrador":
+                u = new Administrador(usuario.getId(),
+                        usuario.getContrasena(),
+                        usuario.getRol(),
+                        usuario.getNombre(),
+                        usuario.getCorreo(),
+                        usuario.getTelefono()
+                );
+                break;
+            case "Profesor":
+                //List<cursos.logic.Grupo> grupos = new ArrayList<>();
+                u = new Profesor(usuario.getId(),
+                        usuario.getContrasena(),
+                        usuario.getRol(),
+                        usuario.getNombre(),
+                        usuario.getCorreo(),
+                        usuario.getTelefono(),
+                        usuario.getEspecialidad()
+                );
+                break;
+            case "Estudiante":
+                u = new Estudiante(usuario.getId(),
+                        usuario.getContrasena(),
+                        usuario.getRol(),
+                        usuario.getNombre(),
+                        usuario.getCorreo(),
+                        usuario.getTelefono()
+                );
 
-            }
+                break;
+
         }
         return u;
     }
+
+    public static void guardarUsuario(cursos.logic.Usuario usuario) throws SQLException, IOException
+    {
+        String rol = usuario.getTipo();
+        database.entidades.Usuario u = null;
+        switch (rol)
+        {
+            case "Administrador":
+                u = new database.entidades.Usuario(usuario.getId(),
+                        usuario.getNombre(),
+                        usuario.getPass(),
+                        usuario.getCorreo(),
+                        usuario.getTelefono(),
+                        null,
+                        "Administrador");
+            break;    
+            case "Profesor":
+                Profesor p = (Profesor) usuario;
+                u = new database.entidades.Usuario(usuario.getId(),
+                        usuario.getNombre(),
+                        usuario.getPass(),
+                        usuario.getCorreo(),
+                        usuario.getTelefono(),
+                        p.getEspecialidad(),
+                        "Administrador");
+            break; 
+            case "Estudiante":
+                u = new database.entidades.Usuario(usuario.getId(),
+                        usuario.getNombre(),
+                        usuario.getPass(),
+                        usuario.getCorreo(),
+                        usuario.getTelefono(),
+                        null,
+                        "Estudiante");
+            break; 
+        }
+        usuarioDAO.registar(u);
+    }
+    // String id, String nombre, String contrasena, String correo, int telefono, String especialidad, String rol
 
     private final static UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final static GrupoDAO grupoDAO = new GrupoDAO();

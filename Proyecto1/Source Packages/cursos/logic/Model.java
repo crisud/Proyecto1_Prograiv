@@ -1,5 +1,6 @@
 package cursos.logic;
 
+import database.entidades.MatriculaFactory;
 import database.entidades.UsuarioFactory;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -95,15 +96,15 @@ public class Model
     }
 
 
-    public List<Matricula> getMatriculas(String id)
+    public List<Matricula> getMatriculas(String id_estudiante)
     { //base
-        List<Matricula> ma = new ArrayList();
-        for (Matricula m : matriculas)
+        List<Matricula> ma = null;
+        try
         {
-            if (m.getEstudiante().getId().equals(id))
-            {
-                ma.add(m);
-            }
+            ma = MatriculaFactory.recuperarMatricula(id_estudiante);
+        }catch(IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
         }
         return ma;
     }

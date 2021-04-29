@@ -39,7 +39,7 @@ public class MatriculaCRUD extends AbstractCRUD
     
     protected static final String LIST_CMD
             = "SELECT id_estudiante, id_grupo, nota FROM proyecto1.estudiantes_grupos "
-            + "ORDER BY id; ";
+            + "ORDER BY id_grupo; ";
     protected static final String ADD_CMD
             = "INSERT INTO proyecto1.estudiantes_grupos (id_estudiante, id_grupo, nota) "
             + "VALUES (?, ?, ?); "; 
