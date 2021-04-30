@@ -8,6 +8,6 @@
         <%@ include file="/presentation/Header.jsp" %>
         
         <div style="margin-top:60px"></div>
-        <div><h1>Lista de Grupos</h1></div>
+        <div class = ""><h1>Lista de Grupos</h1></div>
     </body>
 </html>
