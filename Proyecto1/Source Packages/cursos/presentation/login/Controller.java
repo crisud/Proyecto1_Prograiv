@@ -6,9 +6,9 @@
 package cursos.presentation.login;
 
 import cursos.logic.*;
-import database.entidades.UsuarioFactory;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,8 +42,12 @@ public class Controller extends HttpServlet {
                 break;
             case "/presentation/login/signup":
                 viewUrl=this.signup(request);
+                break;
             case "/presentation/home":
                 viewUrl=this.home(request);
+                break;
+            default:viewUrl=this.home(request);
+                break;
             
         }
         request.getRequestDispatcher(viewUrl).forward( request, response); 
@@ -100,6 +104,8 @@ public class Controller extends HttpServlet {
             switch(real.getTipo()){
                 case "Estudiante":
                     viewUrl="/presentation/person/estudiante.jsp";
+                    List<Curso> cursos = domainModel.getCursos();
+                    session.setAttribute("cursos", cursos);
                     break;
                 case "Profesor":
                      viewUrl="/presentation/person/profesor.jsp";
@@ -148,16 +154,32 @@ public class Controller extends HttpServlet {
         return this.signupAction(request);
     }
     
-    public String signupAction(HttpServletRequest request){
+    public String signupAction(HttpServletRequest request){//verifica si ya existe y si id esta vacio?
+
+        try { 
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");
         String email = request.getParameter("email"); 
         Integer tel = Integer.valueOf(request.getParameter("tel"));
+        
+        if(id.isEmpty() || name.isEmpty() || pass.isEmpty() || email.isEmpty()){
+            request.setAttribute("error", "si"); 
+            return "/presentation/login/Signup.jsp"; 
+        }
+        
+        request.setAttribute("error", "no"); 
         Estudiante usuario = new Estudiante(id,pass,"Estudiante",name,email,tel);
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         domainModel.insertUser(usuario);
-        return "/presentation/Index.jsp"; 
+        return "/presentation/Index.jsp";  
+
+        } catch (NumberFormatException e) {
+         
+            request.setAttribute("error", "si"); 
+            return "/presentation/login/Signup.jsp";
+        }
+       
     }
     
     public String home(HttpServletRequest request){

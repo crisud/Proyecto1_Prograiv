@@ -95,7 +95,7 @@ public class UsuarioFactory
                         usuario.getCorreo(),
                         usuario.getTelefono(),
                         p.getEspecialidad(),
-                        "Administrador");
+                        "Profesor");
             break; 
             case "Estudiante":
                 u = new database.entidades.Usuario(usuario.getId(),

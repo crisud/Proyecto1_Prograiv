@@ -37,7 +37,17 @@ public class Curso
     {
         return nombre;
     }
-    
+ 
+      public String getTematica()
+    {
+        return tematica;
+    }
+      
+      public double getPrecio()
+    {
+        return precio;
+    }
+      
     private String id;
     private String nombre;
     private String tematica;

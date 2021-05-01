@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Calef
  */
-@WebServlet(name = "EstudianteController", urlPatterns = {"/presentation/estudiante/datos","/presentation/estudiante/historial",
+@WebServlet(name = "EstudianteController", urlPatterns = {"/presentation/estudiante/datos","/presentation/estudiante/detalles",
 "/presentation/estudiante/update","/presentation/estudiante/cursos"})
 public class Controller extends HttpServlet {
 
@@ -39,8 +39,8 @@ public class Controller extends HttpServlet {
             case "/presentation/estudiante/update":
                 viewUrl=this.update(request);
                 break;            
-            case "/presentation/estudiante/historial":
-                viewUrl=this.historial(request);
+            case "/presentation/estudiante/detalles":
+                viewUrl=this.detalles(request);
                 break;
             case "/presentation/estudiante/cursos":
                 viewUrl=this.cursos(request);
@@ -122,13 +122,13 @@ public class Controller extends HttpServlet {
         }
     }
 
-    //historial del estudiante
-    public String historial(HttpServletRequest request){
-        return this.historialAction(request);
+    //detalles del estudiante
+    public String detalles(HttpServletRequest request){
+        return this.detallesAction(request);
     }
     
-    public String historialAction(HttpServletRequest request){
-        String viewUrl="/presentation/estudiante/historial/historial.jsp";
+    public String detallesAction(HttpServletRequest request){
+        String viewUrl="/presentation/estudiante/detalles/detalles.jsp";
         return viewUrl; 
     }
 

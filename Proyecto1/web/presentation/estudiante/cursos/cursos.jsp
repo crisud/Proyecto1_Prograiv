@@ -25,6 +25,9 @@
         <div style="margin-top:25px"></div> 
         
         <%if(matriculas!=null){%>
+            <%if(matriculas.isEmpty()) {%>
+                <h1 class= " position-fixed">  No hay Cursos matriculados   </h1>
+            <%}%>
             <% for (Matricula ma : matriculas) {%>
                 <div class="mx-auto" style="width: 800px">
                     <div class="card">
@@ -41,10 +44,9 @@
                     </div>
                 </div>
                 <div style="margin-top:25px"></div> 
-            <%} %>
-        <%} else {%>
-        <h1>  No hay Cursos matriculados   </h1>
-        <%}%>
+                <%} %>
+            <% } %>
+   
 
     </body>
 </html>

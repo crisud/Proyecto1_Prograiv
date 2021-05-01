@@ -1,5 +1,6 @@
 package cursos.logic;
 
+import database.entidades.CursoFactory;
 import database.entidades.MatriculaFactory;
 import database.entidades.UsuarioFactory;
 import java.io.IOException;
@@ -109,4 +110,9 @@ public class Model
         return ma;
     }
 
+     public List<Curso> getCursos(){
+        List<Curso> cu = null;
+        cu = CursoFactory.listarCursos();
+        return cu;
+     }
 }

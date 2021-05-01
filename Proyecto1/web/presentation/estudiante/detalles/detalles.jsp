@@ -1,6 +1,5 @@
 <%-- 
     Document   : historial
-    Created on : 25/04/2021, 11:43:11 PM
     Author     : Calef
 --%>
 
@@ -12,6 +11,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Hello World! aqui iría información del curso y los horarios y el boton de matricular</h1>
     </body>
 </html>
