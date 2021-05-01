@@ -111,8 +111,15 @@ public class Model
     }
 
      public List<Curso> getCursos(){
-        List<Curso> cu = null;
+        List<Curso> cu;
         cu = CursoFactory.listarCursos();
         return cu;
+     }
+     
+     public List<Curso> cursosEnOferta()
+     {
+         List<Curso> cu;
+         cu = CursoFactory.listarCursosEnOferta();
+         return cu;
      }
 }
