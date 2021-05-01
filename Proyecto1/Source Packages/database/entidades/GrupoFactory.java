@@ -39,17 +39,31 @@ public class GrupoFactory
     
     
     
-    public static cursos.logic.Grupo recuperarGrupo(String id) throws SQLException, IOException
+    public static cursos.logic.Grupo recuperarGrupo(String id_grupo) throws SQLException, IOException
     {
         cursos.logic.Grupo grupo;
 
-        database.entidades.Grupo aux = grupoDAO.buscar(id);
+        database.entidades.Grupo aux = grupoDAO.buscar(id_grupo);
 
         grupo = crearGrupo(aux);
         
         return grupo;
     }
     
+    public static List<cursos.logic.Grupo> recuperarGrupos_profe(String id_profesor) throws SQLException, IOException
+    {
+       
+        List<cursos.logic.Grupo> grupos = listarGrupos(); //todas las matri de la base
+        List<cursos.logic.Grupo> gruposAux = new ArrayList<>(); // se agrega las que el id del estu por buscar sea igual 
+        
+        for (cursos.logic.Grupo m : grupos)
+        {
+            if(m.getNomProfesor().equals(id_profesor))
+                gruposAux.add(m);
+        }
+
+        return gruposAux;
+    }
     
     public static cursos.logic.Grupo crearGrupo(database.entidades.Grupo grupo) 
         throws SQLException, IOException

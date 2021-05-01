@@ -20,7 +20,7 @@
         </div>
         
         <div class = "row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4">
-            <div class = "col">
+            <div class = " container-fluid">
                 <div class="card shadow-sm " style="width: 18rem;">
                     <img src="/Proyecto1/img/cursoPintura.jpg" class="card-img-top" alt="cursoPintura">
                     <div class="card-body">

@@ -104,11 +104,14 @@ public class Controller extends HttpServlet {
             switch(real.getTipo()){
                 case "Estudiante":
                     viewUrl="/presentation/person/estudiante.jsp";
-                    List<Curso> cursos = domainModel.getCursos();
+                    List<Curso> cursos = domainModel.getCursos();                   
+                  
                     session.setAttribute("cursos", cursos);
                     break;
                 case "Profesor":
                      viewUrl="/presentation/person/profesor.jsp";
+                     List<Grupo> grupos = domainModel.getGrupos(real.getId());
+                     session.setAttribute("gruposProfe", grupos);
                     break;     
                 case "Administrador":
                     viewUrl="/presentation/person/administrador.jsp";

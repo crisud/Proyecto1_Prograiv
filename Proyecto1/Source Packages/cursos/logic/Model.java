@@ -3,6 +3,7 @@ package cursos.logic;
 import database.entidades.CursoFactory;
 import database.entidades.MatriculaFactory;
 import database.entidades.UsuarioFactory;
+import database.entidades.GrupoFactory;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -109,10 +110,21 @@ public class Model
         }
         return ma;
     }
-
-     public List<Curso> getCursos(){
+    
+    public List<Grupo> getGrupos(String id_profesor){
+        try
+        {
+            return GrupoFactory.recuperarGrupos_profe(id_profesor);
+        }catch(IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+    
+    public List<Curso> getCursos(){
         List<Curso> cu = null;
         cu = CursoFactory.listarCursos();
         return cu;
-     }
+    }
 }
