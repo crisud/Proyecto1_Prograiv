@@ -35,6 +35,25 @@ public class CursoFactory
         return cursos;
     }
     
+    public static List<cursos.logic.Curso> listarCursosEnOferta()
+    {
+        List<cursos.logic.Curso> cursos = new ArrayList<>();
+        
+        try
+        {
+            for(database.entidades.Curso c: cursoDAO.listarCursosEnOferta())
+            {
+                cursos.add(crearCurso(c));
+            }
+        }
+        catch(IOException | SQLException ex)
+        {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+                
+        return cursos;
+    }
+    
     public static cursos.logic.Curso recuperarCurso(String id) throws SQLException, IOException
     {
         cursos.logic.Curso curso;
@@ -64,22 +83,20 @@ public class CursoFactory
         return c;
     }
 
-
+    private final static database.dao.GrupoDAO grupoDAO = new database.dao.GrupoDAO();
+    private final static database.dao.CursoDAO cursoDAO = new database.dao.CursoDAO();
+    
 //    public static void main(String[] args)
 //    {
-//        List<cursos.logic.Curso> cursos = null;
+//        List<cursos.logic.Curso> matri = null;
 //       
-//        cursos = listarCursos();
+//        matri = listarCursos();
 //        
-//        if (cursos != null)
+//        if (matri != null)
 //        {
-//            for(cursos.logic.Curso curso: cursos)
-//            System.out.printf("Curso id: %s%n",curso.getId());
+//            for(cursos.logic.Curso curso: matri)
+//            System.out.printf("Matri id: %s%n",curso.getNombre());
 //            
 //        }
 //    }
-
-
-    private final static database.dao.GrupoDAO grupoDAO = new database.dao.GrupoDAO();
-    private final static database.dao.CursoDAO cursoDAO = new database.dao.CursoDAO();
 }

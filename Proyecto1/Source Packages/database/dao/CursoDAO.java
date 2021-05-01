@@ -6,11 +6,16 @@
 package database.dao;
 
 import database.AbstractDAO;
+import database.Database;
 import database.crud.CursoCRUD;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -55,4 +60,25 @@ public class CursoDAO extends AbstractDAO<database.entidades.Curso>
         stm.setBoolean(4, value.getEnOferta());
         stm.setString(5, value.getId());
     }
+    
+    public List<database.entidades.Curso> listarCursosEnOferta() throws SQLException, IOException
+    {
+        List<database.entidades.Curso> lista = new ArrayList<>();
+        try (Connection cnx = Database.getInstance().getConnection();
+                Statement stm = cnx.createStatement();
+                ResultSet rs = stm.executeQuery(LIST_CURSOS_EN_OFERTA_CMD))
+        {
+            while (rs.next()) 
+            {
+                lista.add(getRecord(rs));
+            }
+        }
+            
+        return lista;
+    }
+    
+    protected static final String LIST_CURSOS_EN_OFERTA_CMD =
+            "SELECT id, nombre, tematica, precio, enOferta FROM proyecto1.cursos " 
+            + "WHERE enOferta = 1 "
+            + "ORDER BY id; ";
 }
