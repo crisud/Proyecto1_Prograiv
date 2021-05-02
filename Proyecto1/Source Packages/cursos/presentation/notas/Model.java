@@ -3,31 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cursos.presentation.estudiante;
+package cursos.presentation.notas;
 
-import cursos.logic.Estudiante;
+import cursos.logic.Grupo;
 
-/**
- *
- * @author Calef
- */
 public class Model {
-
-    Estudiante current;
-
+    
+    Grupo current;
+    
     public Model() {
         this.reset();
     }
     
     public void reset(){
-        setCurrent(new Estudiante());        
+        setCurrent(new Grupo());        
     }
     
-    public Estudiante getCurrent() {
+    public Grupo getCurrent() {
         return current;
     }
 
-    public void setCurrent(Estudiante current) {
+    public void setCurrent(Grupo current) {
         this.current = current;
     }
 }

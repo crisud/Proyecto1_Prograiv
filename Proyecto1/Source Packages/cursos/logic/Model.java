@@ -122,6 +122,16 @@ public class Model
         return null;
     }
     
+    public List<Estudiante> getEstGrupo(String id_grupo){
+        try{
+            return MatriculaFactory.recuperarEstudianteConIDGrupo(id_grupo);
+        }catch(IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+    
     public List<Curso> getCursos(){
         List<Curso> cu = null;
         cu = CursoFactory.listarCursos();

@@ -24,12 +24,11 @@
             <%if(grupos!=null){%>
                 <%for(Grupo g:grupos){%>
                     <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title"><%=g.getId()%></h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=g.getNombreCurso()%></h6>
-                            <p class="card-text"><%=g.getHorario()%></p>
-                            <a href="/presentation/profesor/notas.jsp" class="card-link link-dark">Ver Estudiantes</a>
-                            <a href="#" class="card-link link-danger">Registrar Notas</a>
+                        <div class="card-body bg-secondary">
+                            <h5 class="card-title text-light"><%=g.getId()%></h5>
+                            <h6 class="card-subtitle mb-2 text-light "><%=g.getNombreCurso()%></h6>
+                            <p class="card-text text-light"><%=g.getHorario()%></p>
+                            <a href="/Proyecto1/presentation/profesor/estudiantes?id_grupo=<%=g.getId()%>" class="card-link link-dark">Ver Estudiantes</a>
                         </div>
                     </div>
                 <%}%>
