@@ -57,7 +57,7 @@
                             <h5 class="card-title"><%= cur.getNombre()%></h5>
                             <p class="card-text"><%= cur.getTematica()%></p>
                            
-                            <a href="/Proyecto1/presentation/estudiante/detalles" class="btn btn-outline-danger">ver detalles</a>
+                            <a href="/Proyecto1/presentation/estudiante/detalla?curso=<%= cur.getId()%>" class="btn btn-outline-danger">ver detalles</a>
                         </div>
                     </div>
                 </div>
@@ -67,3 +67,4 @@
         
     </body>
 </html>
+

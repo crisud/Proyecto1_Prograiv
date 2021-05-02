@@ -122,4 +122,10 @@ public class Model
          cu = CursoFactory.listarCursosEnOferta();
          return cu;
      }
+     
+      public Curso getCurso(String id) throws SQLException, IOException{
+         Curso cur = CursoFactory.recuperarCurso(id);
+         return cur;
+     }
+     
 }
