@@ -25,9 +25,9 @@
             <%}else{%>
             <ul class="list-group">
                 <%for(Estudiante e:est){%>
-                <li class="list-group-item p-2">
-                    <%=e.getNombre()%>
-                    <a class = "btn-danger" href='#' style="align-content: flex-end">Registrar Nota</a>
+                <li class="list-group-item p-4">
+                    <h4><%=e.getNombre()%><h4 style="text-end"><%if(e.)%></h4></h4>
+                    <div class = "text-end"><a class = "btn btn-danger" href='/Proyecto1/presentation/profesor/registroNota' ><h4>Registrar Nota</h4></a></div>
                 </li>
                 <%}%>
             </ul>

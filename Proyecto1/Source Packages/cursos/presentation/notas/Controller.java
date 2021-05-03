@@ -36,7 +36,7 @@ public class Controller extends HttpServlet {
                 viewUrl=this.datosEstudiantes(request);
                 break;              
             case "/presentacion/profesor/registroNota":
-                viewUrl="youtube.com";
+                viewUrl=this.registroNota(request);
                 break;            
             
         }
@@ -100,5 +100,9 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+}
+
+public String registroNota(HttpServletRequest request){
 
 }
