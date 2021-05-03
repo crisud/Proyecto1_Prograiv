@@ -137,4 +137,15 @@ public class Model
         cu = CursoFactory.listarCursos();
         return cu;
     }
+    
+    public Curso getCurso(String id){
+        List<Curso> cu = null;
+        cu = CursoFactory.listarCursos();
+        for(Curso a:cu){
+            if(id.equals(a.getId())){
+                return a;
+            }
+        }
+        return null;
+    }
 }

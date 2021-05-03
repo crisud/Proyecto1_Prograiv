@@ -18,6 +18,26 @@ import java.util.List;
  */
 public class GrupoFactory
 {
+    public static List<cursos.logic.Grupo> listarGruposPorIDCurso(String id_curso)
+    {
+        List<cursos.logic.Grupo> grupos = new ArrayList<>();
+        
+        try
+        {
+            for(database.entidades.Grupo g: grupoDAO.listAllIDCurso(id_curso))
+            {
+                grupos.add(crearGrupo(g));
+            }
+        }
+        catch(IOException | SQLException ex)
+        {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+                
+        return grupos;
+    }
+    
+    
     public static List<cursos.logic.Grupo> listarGrupos()
     {
         List<cursos.logic.Grupo> grupos = new ArrayList<>();
@@ -90,4 +110,19 @@ public class GrupoFactory
         return g;
     }
     private static final GrupoDAO grupoDAO = new GrupoDAO();
+    
+    
+//        public static void main(String[] args)
+//    {
+//        List<cursos.logic.Grupo> matri = null;
+//       
+//        matri = listarGruposPorIDCurso("A5");
+//        
+//        if (matri != null)
+//        {
+//            for(cursos.logic.Grupo curso: matri)
+//            System.out.printf("Matri id: %s%n",curso.getHorario());
+//            
+//        }
+//    }
 }
