@@ -2,11 +2,14 @@
     Document   : historial
     Author     : Calef
 --%>
+<%@page import="cursos.logic.Grupo"%>
 <%@page import="cursos.logic.Curso"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%
     Curso curso = (Curso) request.getAttribute("cur");
+    List<Grupo> grupos = (List<Grupo>) request.getAttribute("gru");
+    String error = (String) request.getAttribute("error");
 %>
 
 
@@ -22,36 +25,40 @@
         <%@ include file="/presentation/Header.jsp" %>
         <div style="margin-top:100px"></div> 
         <% if (curso != null) {%>
-        <div class="mx-auto form" style="width: 50%; height: 500px">
-            <div class="d-flex justify-content-center  bg-light text-dark" style="height: 300px">
+        <form class="mx-auto form" action="/Proyecto1/presentation//estudiante/matricular" method="post" style="width: 50%; height: 500px">
+            <div class="d-flex justify-content-center  bg-light text-dark" style="height: 400px">
 
                 <div class="card text-center" style="width: 100%; height: 100%" >
                     <div class="card-header">
                         Codigo: <%=curso.getId()%>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title"><%=curso.getNombre()%></h5>
+                        <h3 class="card-title text-danger"><%=curso.getNombre()%></h3>
                         <p class="card-text"><%=curso.getTematica()%></p>
 
-                        <%-- Aqui for de los horarios(grupos)--%>
+                        
+                        <% if (grupos != null && !grupos.isEmpty()) {%>
+                        <p class="card-text text-muted"> Horarios disponibles</p>
+                        
+                        <% for (Grupo gru : grupos) {%>
                         <div class="form-check  d-flex justify-content-center p-2">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                 Default radio
-                            </label>
+                            <input class="form-check-input" type="radio" name="grupo" value="<%=gru.getId()%>" required>
+                            <p class="card-text"><%=gru.getHorario()%></p>
+                            <p class="card-text">| <%=gru.getNomProfesor()%></p>
+                            <p class="card-text"> | <%=gru.getId()%></p>
                         </div>
+                        <% }%>
+                        
 
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <button class="btn btn-primary">Matricular</button>
+                        <% }%>
                     </div>
                     <div class="card-footer text-muted">
                         Precio: ₡ <%=curso.getPrecio()%>
                     </div>
                 </div>
-
-
-
             </div>
-        </div>
+        </form>
         <% } else {%>
         <div class="justify-content-sm-between">
             <h3>error en el curso</h3>
@@ -61,5 +68,6 @@
 
 
     </body>
+
 </html>
 

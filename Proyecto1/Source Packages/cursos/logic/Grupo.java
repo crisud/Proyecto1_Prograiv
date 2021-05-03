@@ -38,7 +38,7 @@ public class Grupo
     
      public String getNomProfesor(){
          if(profesor!=null)
-             return profesor.getId();
+             return profesor.getNombre();
          return "Null";
     }
     

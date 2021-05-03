@@ -7,11 +7,11 @@ package cursos.presentation.estudiante;
 
 import cursos.logic.Curso;
 import cursos.logic.Estudiante;
+import cursos.logic.Grupo;
 import cursos.logic.Matricula;
 import cursos.logic.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,105 +24,130 @@ import javax.servlet.http.HttpSession;
  *
  * @author Calef
  */
-@WebServlet(name = "EstudianteController", urlPatterns = {"/presentation/estudiante/datos","/presentation/estudiante/detalla",
-"/presentation/estudiante/update","/presentation/estudiante/cursos"})
+@WebServlet(name = "EstudianteController", urlPatterns = {"/presentation/estudiante/datos", "/presentation/estudiante/detalla",
+    "/presentation/estudiante/matricular", "/presentation/estudiante/cursos"})
 public class Controller extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-       request.setAttribute("modelEstu", new Model()); 
-        
-       String viewUrl="";
-        switch(request.getServletPath()){
+
+        request.setAttribute("modelEstu", new Model());
+
+        String viewUrl = "";
+        switch (request.getServletPath()) {
             case "/presentation/estudiante/datos":
-                viewUrl=this.datos(request);
-                break;              
-            case "/presentation/estudiante/update":
-                viewUrl=this.update(request);
-                break;            
+                viewUrl = this.datos(request);
+                break;
+            case "/presentation/estudiante/matricular":
+                viewUrl = this.matricular(request);
+                break;
             case "/presentation/estudiante/detalla":
-                viewUrl=this.detalles(request);
+                viewUrl = this.detalles(request);
                 break;
             case "/presentation/estudiante/cursos":
-                viewUrl=this.cursos(request);
+                viewUrl = this.cursos(request);
                 break;
-            default: viewUrl = "/presentation/person/estudiante.jsp"; break;
-            
-        }
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
+            default:
+                viewUrl = "/presentation/person/estudiante.jsp";
+                break;
 
         }
-    
+        request.getRequestDispatcher(viewUrl).forward(request, response);
+
+    }
+
 //datos del estudiante
-     public String datos(HttpServletRequest request){
+    public String datos(HttpServletRequest request) {
         return this.datosAction(request);
     }
-    
-    public String datosAction(HttpServletRequest request){
+
+    public String datosAction(HttpServletRequest request) {
         try {
             HttpSession session = request.getSession(true);
             Usuario usua = (Usuario) session.getAttribute("usuario");
-           
-            
-            //Aqui iría la recuperacion con la base de datos
-            cursos.logic.Model  domainModel = cursos.logic.Model.instance();
-            Usuario usu = domainModel.usuarioFind(usua.getId()); //Tiene que ser estudianteFind
-            
-            String id =  usu.getId();
-            String name =  usu.getNombre();
-            String pass =  usu.getPass();
-            String email =  usu.getCorreo();
-            Integer tel =  usu.getTelefono();
 
-            Estudiante estudiante = new Estudiante(id,pass,"Estudiante",name,email, tel);
+            //Aqui iría la recuperacion con la base de datos
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
+            Usuario usu = domainModel.usuarioFind(usua.getId()); //Tiene que ser estudianteFind
+
+            String id = usu.getId();
+            String name = usu.getNombre();
+            String pass = usu.getPass();
+            String email = usu.getCorreo();
+            Integer tel = usu.getTelefono();
+
+            Estudiante estudiante = new Estudiante(id, pass, "Estudiante", name, email, tel);
             Model mo = new Model();
             mo.setCurrent(estudiante);
             request.setAttribute("modelEstu", mo);
 
-            String viewUrl="/presentation/estudiante/datos/datos.jsp";
+            String viewUrl = "/presentation/estudiante/datos/datos.jsp";
             return viewUrl;
-        
+
         } catch (Exception e) {
-            String viewUrl="/presentation/Error.jsp";
-            return viewUrl; 
+            String viewUrl = "/presentation/Error.jsp";
+            return viewUrl;
         }
-       
+
     }
-    
+
     //actulizar datos del estudiante (Preguntar) //ño ñacer
-    public String update(HttpServletRequest request){
-        return this.updateAction(request);
+    public String matricular(HttpServletRequest request) {
+        return this.matricularAction(request);
     }
-    
-    public String updateAction(HttpServletRequest request){
-        String viewUrl="/Proyecto1/presentation/View.jsp";
-        return viewUrl; 
+
+    public String matricularAction(HttpServletRequest request) {
+        try {
+            //Obtengo el estudiante y el id del grupo seleccionado
+            HttpSession session = request.getSession(true);
+            Usuario usua = (Usuario) session.getAttribute("usuario");
+            String idGrupo = (String) request.getParameter("grupo");
+            
+            if("default".equals(idGrupo)){
+                request.setAttribute("error", "No se pudo realizar la matricula, Horario no seleccionado");
+                String viewUrl = "/presentation/estudiante/detalla/mensaje.jsp";
+                return viewUrl;
+            }
+
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
+            Grupo gru = domainModel.getGrupo(idGrupo);
+
+            Matricula m = new Matricula((Estudiante) usua, gru, 0.0);
+            domainModel.insertMatricula(m);
+            request.setAttribute("error", "La matricula de este curso se realizo con exito!");
+            String viewUrl = "/presentation/estudiante/detalla/mensaje.jsp";
+            return viewUrl;
+
+        } catch (IOException | SQLException e) {
+            request.setAttribute("error", "No se pudo realizar la matricula, Curso ya matriculado");
+            String viewUrl = "/presentation/estudiante/detalla/mensaje.jsp";
+            return viewUrl;
+        }
+
     }
-    
+
     //cursos del estudiante
-    public String cursos(HttpServletRequest request){
+    public String cursos(HttpServletRequest request) {
         return this.cursosAction(request);
     }
-    
-    public String cursosAction(HttpServletRequest request){
-       try {
+
+    public String cursosAction(HttpServletRequest request) {
+        try {
             HttpSession session = request.getSession(true);
             Usuario usua = (Usuario) session.getAttribute("usuario");
             String id = usua.getId();
-            
+
             //Aqui iría la recuperacion con la base de datos
-            cursos.logic.Model  domainModel = cursos.logic.Model.instance();
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
             List<Matricula> matriculas = domainModel.getMatriculas(id); //Tiene que ser base
-            
+
             request.setAttribute("listaCursos", matriculas);
 
-            String viewUrl="/presentation/estudiante/cursos/cursos.jsp";
+            String viewUrl = "/presentation/estudiante/cursos/cursos.jsp";
             return viewUrl;
-        
+
         } catch (Exception e) {
-            String viewUrl="/presentation/Error.jsp";
-            return viewUrl; 
+            String viewUrl = "/presentation/Error.jsp";
+            return viewUrl;
         }
     }
 
@@ -130,21 +155,27 @@ public class Controller extends HttpServlet {
     public String detalles(HttpServletRequest request) {
         return this.detallesAction(request);
     }
-    
-    public String detallesAction(HttpServletRequest request){
-        String viewUrl = "";
+
+    public String detallesAction(HttpServletRequest request) {
         try {
+            //Obtengo el curso
             String id = (String) request.getParameter("curso");
-            cursos.logic.Model  domainModel = cursos.logic.Model.instance();
-            Curso cur = domainModel.getCurso(id); 
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
+            Curso cur = domainModel.getCurso2(id);
+
+            //obtengo los cursos disponibles de
+            List<Grupo> grupos = domainModel.getGruposCurso(id);
 
             request.setAttribute("cur", cur);
-            viewUrl="/presentation/estudiante/detalla/detalla.jsp";
+            request.setAttribute("gru", grupos);
+            String viewUrl = "/presentation/estudiante/detalla/detalla.jsp";
             return viewUrl;
-        }catch(Exception e){
-            
+
+        } catch (IOException | SQLException e) {
+            String viewUrl = "/presentation/Error.jsp";
+            return viewUrl;
         }
-        return viewUrl;
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -186,4 +217,3 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
-

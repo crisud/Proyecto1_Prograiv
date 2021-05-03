@@ -96,7 +96,14 @@ public class Model
         }
 
     }
+    
+     public void insertMatricula(Matricula m) throws SQLException, IOException
+    {
+       
+            MatriculaFactory.guardarMatricular(m);
+        
 
+    }
 
     public List<Matricula> getMatriculas(String id_estudiante)
     { //base
@@ -148,4 +155,28 @@ public class Model
         }
         return null;
     }
+    
+    
+     public List<Curso> cursosEnOferta()
+     {
+         List<Curso> cu;
+         cu = CursoFactory.listarCursosEnOferta();
+         return cu;
+     }
+     
+     //otra version
+      public Curso getCurso2(String id) throws SQLException, IOException{
+         Curso cur = CursoFactory.recuperarCurso(id);
+         return cur;
+     }
+     
+     public List<Grupo> getGruposCurso(String id){
+         List<Grupo> gu = null;
+         gu = GrupoFactory.listarGruposPorIDCurso(id);
+        return gu;
+     }
+     
+     public Grupo getGrupo(String id) throws SQLException, IOException{
+        return GrupoFactory.recuperarGrupo(id);
+     }
 }
