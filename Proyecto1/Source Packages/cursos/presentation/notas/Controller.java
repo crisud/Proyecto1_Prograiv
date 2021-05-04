@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Hp
  */
-@WebServlet(name = "registroGrupos", urlPatterns = {"/presentation/profesor/estudiantes","/presentacion/profesor/registroNota","/presentacion/profesor/registroNota/update"})
+@WebServlet(name = "registroGrupos", urlPatterns = {"/presentation/profesor/estudiantes","/presentacion/profesor/registroNota","/presentacion/profesor/registroNotaUpdate"})
 public class Controller extends HttpServlet {
 
    
@@ -39,7 +39,7 @@ public class Controller extends HttpServlet {
             case "/presentacion/profesor/registroNota":
                 viewUrl=this.registroNota(request);
                 break; 
-            case "/presentacion/profesor/registroNota/update":
+            case "/presentacion/profesor/registroNotaUpdate":
                 viewUrl=this.registroNotaUpdate(request);
                 break;
             
@@ -114,8 +114,7 @@ public class Controller extends HttpServlet {
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         String actual = (String) request.getParameter("id_group");
         List<Estudiante> group = domainModel.getEstGrupo(actual);
-        List<Matricula> mats = domainModel.getMatriculas();
-        request.setAttribute("matriculas", mats);
+        
         request.setAttribute("EstGrupo",group);
         return "/presentation/profesor/registro.jsp";
     }
@@ -125,6 +124,15 @@ public class Controller extends HttpServlet {
     }
     
     public String registroNotaUpdateAction(HttpServletRequest request){
+        cursos.logic.Model  domainModel = cursos.logic.Model.instance();
+        String actual = (String) request.getParameter("id_group");
+        String id_estu = (String) request.getParameter("id_est");
+        List<Matricula> mats= domainModel.getMatriculas(id_estu);
+        for(Matricula m:mats){
+            if(m.getGrupo().getId().equals(actual)){
+                m.setNota((Double)request.getAttribute("nota"));
+            }
+        }
         return "/Proyecto1/presentacion/profesor/notas.jsp";
     }
 }
