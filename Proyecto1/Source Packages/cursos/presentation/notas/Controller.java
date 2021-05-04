@@ -7,6 +7,7 @@ package cursos.presentation.notas;
 
 import cursos.logic.Estudiante;
 import cursos.logic.Grupo;
+import cursos.logic.Matricula;
 import cursos.logic.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Hp
  */
-@WebServlet(name = "registroGrupos", urlPatterns = {"/presentation/profesor/estudiantes","/presentacion/profesor/registroNota"})
+@WebServlet(name = "registroGrupos", urlPatterns = {"/presentation/profesor/estudiantes","/presentacion/profesor/registroNota","/presentacion/profesor/registroNota/update"})
 public class Controller extends HttpServlet {
 
    
@@ -37,7 +38,10 @@ public class Controller extends HttpServlet {
                 break;              
             case "/presentacion/profesor/registroNota":
                 viewUrl=this.registroNota(request);
-                break;            
+                break; 
+            case "/presentacion/profesor/registroNota/update":
+                viewUrl=this.registroNotaUpdate(request);
+                break;
             
         }
         request.getRequestDispatcher(viewUrl).forward( request, response); 
@@ -54,7 +58,9 @@ public class Controller extends HttpServlet {
             cursos.logic.Model  domainModel = cursos.logic.Model.instance();
             String actual = (String) request.getParameter("id_grupo");
             List<Estudiante> group = domainModel.getEstGrupo(actual);
+            List<Matricula> mats = domainModel.getMatriculas();
             request.setAttribute("EstGrupo",group);
+            request.setAttribute("matriculas", mats);
             return "/presentation/profesor/notas.jsp";
         }
         catch (Exception e) {
@@ -100,9 +106,27 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    public String registroNota(HttpServletRequest request){
+        return this.registroNotaAction(request);
+    }
 
+    public String registroNotaAction(HttpServletRequest request){
+        cursos.logic.Model  domainModel = cursos.logic.Model.instance();
+        String actual = (String) request.getParameter("id_group");
+        List<Estudiante> group = domainModel.getEstGrupo(actual);
+        List<Matricula> mats = domainModel.getMatriculas();
+        request.setAttribute("matriculas", mats);
+        request.setAttribute("EstGrupo",group);
+        return "/presentation/profesor/registro.jsp";
+    }
+    
+    public String registroNotaUpdate(HttpServletRequest request){
+        return this.registroNotaUpdateAction(request);
+    }
+    
+    public String registroNotaUpdateAction(HttpServletRequest request){
+        return "/Proyecto1/presentacion/profesor/notas.jsp";
+    }
 }
 
-public String registroNota(HttpServletRequest request){
 
-}

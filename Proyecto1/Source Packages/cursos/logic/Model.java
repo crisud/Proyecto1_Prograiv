@@ -129,6 +129,17 @@ public class Model
         return null;
     }
     
+    public List<Grupo> getGruposNota(String id_profesor){
+        try
+        {
+            return GrupoFactory.recuperarGrupos_profeNota(id_profesor);
+        }catch(IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+    
     public List<Estudiante> getEstGrupo(String id_grupo){
         try{
             return MatriculaFactory.recuperarEstudianteConIDGrupo(id_grupo);
@@ -179,4 +190,8 @@ public class Model
      public Grupo getGrupo(String id) throws SQLException, IOException{
         return GrupoFactory.recuperarGrupo(id);
      }
+     
+    public List<Matricula> getMatriculas(){
+        return MatriculaFactory.listarMatriculas();
+    }
 }

@@ -41,6 +41,8 @@ public class Grupo
              return profesor.getNombre();
          return "Null";
     }
+     
+     public String getIdProfe(){return profesor.getId();}
     
     public String getNombreCurso(){
         if(curso!=null)

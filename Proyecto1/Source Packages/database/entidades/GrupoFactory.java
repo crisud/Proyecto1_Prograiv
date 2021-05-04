@@ -85,6 +85,21 @@ public class GrupoFactory
         return gruposAux;
     }
     
+    public static List<cursos.logic.Grupo> recuperarGrupos_profeNota(String id_profesor) throws SQLException, IOException
+    {
+       
+        List<cursos.logic.Grupo> grupos = listarGrupos(); //todas las matri de la base
+        List<cursos.logic.Grupo> gruposAux = new ArrayList<>(); // se agrega las que el id del estu por buscar sea igual 
+        
+        for (cursos.logic.Grupo m : grupos)
+        {
+            if(m.getIdProfe().equals(id_profesor))
+                gruposAux.add(m);
+        }
+
+        return gruposAux;
+    }
+    
     public static cursos.logic.Grupo crearGrupo(database.entidades.Grupo grupo) 
         throws SQLException, IOException
     {

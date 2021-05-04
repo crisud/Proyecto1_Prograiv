@@ -22,6 +22,10 @@ public class Matricula
         
     }
     
+    public void setNota(Double x){
+        this.nota = x;
+    }
+    
     public Estudiante getEstudiante()
     {
         return estudiante;

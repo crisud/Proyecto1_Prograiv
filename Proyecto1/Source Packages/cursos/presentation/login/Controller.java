@@ -110,7 +110,7 @@ public class Controller extends HttpServlet {
                     break;
                 case "Profesor":
                      viewUrl="/presentation/person/profesor.jsp";
-                     List<Grupo> grupos = domainModel.getGrupos(real.getId());
+                     List<Grupo> grupos = domainModel.getGruposNota(real.getId());
                      session.setAttribute("gruposProfe", grupos);
                     break;     
                 case "Administrador":
