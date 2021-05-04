@@ -18,6 +18,22 @@ import java.util.List;
  */
 public class GrupoFactory
 {
+    public static void guardarGrupo(cursos.logic.Grupo grupo) throws SQLException, IOException
+    {
+        database.entidades.Grupo g = null;
+        
+        g = new database.entidades.Grupo(
+                grupo.getId(),
+                grupo.getIDProfesor(),
+                grupo.getIDCurso(),
+                grupo.getHorario()
+        );
+        
+        grupoDAO.registar(g);
+    }
+    
+    
+    
     public static List<cursos.logic.Grupo> listarGruposPorIDCurso(String id_curso)
     {
         List<cursos.logic.Grupo> grupos = new ArrayList<>();
@@ -96,19 +112,5 @@ public class GrupoFactory
         return g;
     }
     private static final GrupoDAO grupoDAO = new GrupoDAO();
-    
-    
-//        public static void main(String[] args)
-//    {
-//        List<cursos.logic.Grupo> matri = null;
-//       
-//        matri = listarGruposPorIDCurso("A5");
-//        
-//        if (matri != null)
-//        {
-//            for(cursos.logic.Grupo curso: matri)
-//            System.out.printf("Matri id: %s%n",curso.getHorario());
-//            
-//        }
-//    }
+
 }
