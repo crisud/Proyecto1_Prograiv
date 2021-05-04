@@ -51,7 +51,7 @@
                 <% for(Curso cur: cursos){ %>
                 <div class = "col">
                     <div class="card shadow-sm " style="width: 18rem;">
-                        <img src="/Proyecto1/img/curso<%= cur.getNombre()%>.jpg" class="card-img-top" alt="<%= cur.getNombre()%>">
+                        <img src="/Proyecto1/img/<%= cur.getNombre()%>.jpg" class="card-img-top" alt="<%= cur.getNombre()%>">
                         <div class="card-body">
 
                             <h5 class="card-title"><%= cur.getNombre()%></h5>
