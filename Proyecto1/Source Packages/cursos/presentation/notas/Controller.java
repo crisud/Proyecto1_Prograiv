@@ -127,8 +127,8 @@ public class Controller extends HttpServlet {
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         String actual = (String) request.getParameter("id_group");
         String id_estu = (String) request.getParameter("id_est");
-        List<Matricula> mats= domainModel.getMatriculas(id_estu);
-        for(Matricula m:mats){
+        List<Matricula> mat= domainModel.getMatriculas(id_estu);
+        for(Matricula m:mat){
             if(m.getGrupo().getId().equals(actual)){
                 m.setNota((Double)request.getAttribute("nota"));
             }
