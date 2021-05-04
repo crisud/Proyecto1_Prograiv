@@ -44,9 +44,10 @@
                     </div>
                     <div style="margin-top:25px"></div> 
                 <%} %>
-                 <div class=" d-flex text-center">
+                 <div class="d-flex justify-content-center">
                      <a target='_blank' href="/Proyecto1/presentation/estudiante/imprime" class="btn btn-primary"> imprimir </a>
                  </div>
+                 <div style="margin-top:25px"></div> 
              <%} else {%>
                 <h1 class= " position-fixed">  No hay Cursos matriculados   </h1>
                 <% } %>

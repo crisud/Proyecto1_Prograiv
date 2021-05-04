@@ -6,6 +6,8 @@
 package cursos.presentation.estudiante;
 
 import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
@@ -13,6 +15,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.sun.javafx.font.FontFactory;
 import cursos.logic.Curso;
 import cursos.logic.Estudiante;
 import cursos.logic.Grupo;
@@ -192,18 +195,38 @@ public class Controller extends HttpServlet {
     
     private String imprime(HttpServletRequest request,  HttpServletResponse response) throws IOException {  
         try {
+            
             HttpSession session = request.getSession(true);
             Usuario usua = (Usuario) session.getAttribute("usuario");
             String id = usua.getId();
             String nom = usua.getNombre();
             
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
+            List<Matricula> matriculas = domainModel.getMatriculas(id);
+            
             PdfDocument pdf = new PdfDocument(new PdfWriter(response.getOutputStream()));
             Document doc = new Document(pdf, PageSize.A4.rotate());
-            PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);        
-            doc.add(new Paragraph(" Estudiante: "+ nom + "  ID: " + id)); 
-           
+            PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+            PdfFont font1 = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
+            PdfFont font2 = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLDOBLIQUE);
+            
+            
+            doc.add(new Paragraph(" Cursos Libres ").setFont(font1).setFontSize(20).setFontColor(ColorConstants.BLUE)); 
+            doc.add(new Paragraph("")); 
+            doc.add(new Paragraph(" Certificado de matriculas del estudiante").setFont(font2).setFontSize(16)); 
+            doc.add(new Paragraph("")); 
+            
+            doc.add(new Paragraph(" Estudiante: "+ nom + " -  ID: " + id).setFont(font1).setFontSize(14)); 
             doc.add(new Paragraph("")); 
 
+            for(Matricula ma: matriculas){
+                doc.add(new Paragraph("")); 
+                doc.add(new Paragraph(" -   Curso: "+ ma.getGrupo().getNombreCurso() + "      ||     ID: " + ma.getGrupo().getId()).setFont(font).setFontColor(ColorConstants.DARK_GRAY)); 
+                doc.add(new Paragraph("     Profesor: "+ ma.getGrupo().getNomProfesor() ).setFont(font)); 
+                doc.add(new Paragraph("     Nota: "+ ma.getNota() ).setFont(font)); 
+                doc.add(new Paragraph("")); 
+            }   
+  
             doc.close();
             response.setContentType("application/pdf");
             response.addHeader("Content-disposition", "inline");
