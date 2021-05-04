@@ -1,6 +1,7 @@
 package cursos.logic;
 
 import database.entidades.CursoFactory;
+import database.entidades.GrupoFactory;
 import database.entidades.MatriculaFactory;
 import database.entidades.UsuarioFactory;
 import java.io.IOException;
@@ -83,16 +84,10 @@ public class Model
         }
     }
 
-    public void insertUser(Usuario u)
+    public void insertUser(Usuario u) throws SQLException, IOException
     {
-        try
-        {
-            UsuarioFactory.guardarUsuario(u);
-        }
-        catch(IOException | SQLException ex)
-        {
-            System.err.println(ex.getMessage());
-        }
+
+        UsuarioFactory.guardarUsuario(u);
 
     }
 
@@ -103,23 +98,43 @@ public class Model
         try
         {
             ma = MatriculaFactory.recuperarMatricula(id_estudiante);
-        }catch(IOException | SQLException ex)
+        } catch (IOException | SQLException ex)
         {
             System.err.println(ex.getMessage());
         }
         return ma;
     }
 
-     public List<Curso> getCursos(){
+    public List<Curso> getCursos()
+    {
         List<Curso> cu;
         cu = CursoFactory.listarCursos();
         return cu;
-     }
-     
-     public List<Curso> cursosEnOferta()
-     {
-         List<Curso> cu;
-         cu = CursoFactory.listarCursosEnOferta();
-         return cu;
-     }
+    }
+
+    public List<Curso> cursosEnOferta()
+    {
+        List<Curso> cu;
+        cu = CursoFactory.listarCursosEnOferta();
+        return cu;
+    }
+
+    public List<Profesor> getProfesores()
+    {
+        List<Profesor> profesores;
+        profesores = UsuarioFactory.listarProfesores();
+
+        return profesores;
+    }
+
+    public void insertGrupo(Grupo grupo) throws SQLException, IOException
+    {
+        GrupoFactory.guardarGrupo(grupo);
+    }
+
+    public void insertCurso(Curso curso) throws SQLException, IOException
+    {
+        CursoFactory.guardarCurso(curso);
+    }
+
 }
