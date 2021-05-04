@@ -5,6 +5,14 @@
  */
 package cursos.presentation.estudiante;
 
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import cursos.logic.Curso;
 import cursos.logic.Estudiante;
 import cursos.logic.Grupo;
@@ -25,7 +33,7 @@ import javax.servlet.http.HttpSession;
  * @author Calef
  */
 @WebServlet(name = "EstudianteController", urlPatterns = {"/presentation/estudiante/datos", "/presentation/estudiante/detalla",
-    "/presentation/estudiante/matricular", "/presentation/estudiante/cursos"})
+    "/presentation/estudiante/matricular", "/presentation/estudiante/cursos" , "/presentation/estudiante/imprime"})
 public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,6 +53,9 @@ public class Controller extends HttpServlet {
                 break;
             case "/presentation/estudiante/cursos":
                 viewUrl = this.cursos(request);
+                break;
+            case "/presentation/estudiante/imprime":
+                viewUrl = this.imprime(request, response);
                 break;
             default:
                 viewUrl = "/presentation/person/estudiante.jsp";
@@ -177,6 +188,30 @@ public class Controller extends HttpServlet {
         }
 
     }
+    
+    
+    private String imprime(HttpServletRequest request,  HttpServletResponse response) throws IOException {  
+        try {
+            HttpSession session = request.getSession(true);
+            Usuario usua = (Usuario) session.getAttribute("usuario");
+            String id = usua.getId();
+            String nom = usua.getNombre();
+            
+            PdfDocument pdf = new PdfDocument(new PdfWriter(response.getOutputStream()));
+            Document doc = new Document(pdf, PageSize.A4.rotate());
+            PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);        
+            doc.add(new Paragraph(" Estudiante: "+ nom + "  ID: " + id)); 
+           
+            doc.add(new Paragraph("")); 
+
+            doc.close();
+            response.setContentType("application/pdf");
+            response.addHeader("Content-disposition", "inline");
+            return null;
+        } catch (IOException ex) {
+            return "/presentation/Error.jsp";
+        }        
+} 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
