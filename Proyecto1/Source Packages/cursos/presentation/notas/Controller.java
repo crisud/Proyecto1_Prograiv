@@ -11,6 +11,7 @@ import cursos.logic.Matricula;
 import cursos.logic.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -127,13 +128,15 @@ public class Controller extends HttpServlet {
         cursos.logic.Model  domainModel = cursos.logic.Model.instance();
         String actual = (String) request.getParameter("id_group");
         String id_estu = (String) request.getParameter("id_est");
-        List<Matricula> mat= domainModel.getMatriculas(id_estu);
-        for(Matricula m:mat){
-            if(m.getGrupo().getId().equals(actual)){
-                m.setNota((Double)request.getAttribute("nota"));
-            }
+        String nota = (String)request.getParameter("nota");
+        Double notita = Double.valueOf(nota); 
+       
+        try{
+            domainModel.updateMatri(notita, actual, id_estu);
+        }catch(SQLException|IOException b){
+            
         }
-        return "/Proyecto1/presentacion/profesor/notas.jsp";
+        return "/presentation/person/profile";
     }
 }
 

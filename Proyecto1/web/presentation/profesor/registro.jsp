@@ -27,9 +27,9 @@
     <body>
         <%@ include file="/presentation/Header.jsp" %>
         <div class="p-4">
-            <form class = "" name="form-signup" action="/Proyecto1/presentacion/profesor/registroNotaUpdate?id_group=<%=actual%>&id_est=<%=e.getId()%>" method="post" > 
+            <form class = "" name="form-nota" action="/Proyecto1/presentacion/profesor/registroNotaUpdate?id_group=<%=actual%>&id_est=<%=e.getId()%>" method="post" > 
                 <label for="calif" class="form-label">Introduzca la nota de <%=e.getNombre()%></label>
-                <input type="number" class="form-control" id="calif" name ="nota" placeholder="Introduzca la calificacion">
+                <input type="number" class="form-control" name ="nota" placeholder="Introduzca la calificacion">
                 <div class=" p-3"><button class="btn btn-danger" >Registrar nota</button> 
                 </div>
                 
