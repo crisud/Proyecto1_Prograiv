@@ -5,8 +5,8 @@
 
 
 <%
-    
-    List<Curso> cursos = (List<Curso>) request.getAttribute("cursos");;
+    List<Curso> cursos = (List<Curso>) request.getAttribute("cursos");
+    Usuario usu = (Usuario) session.getAttribute("usuario");
 %>
 
 
@@ -44,8 +44,13 @@
                         <br>
                         <p class="card-text">En oferta</p>
                         <%}%>
-                        <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
+                        <%if(usu == null){%>
+                        <a href="/Proyecto1/presentation/login/show" class="btn btn-danger">Matricular</a>
+                        <%}else if(usu.getTipo() == "Estudiante"){%>
+                        <a href="/Proyecto1/presentation/estudiante/detalla?curso=<%=c.getId()%> class="btn btn-danger">Matricular</a>
+                        
+                        
+                        <%}%>
                     </div>
                 </div>
             </div>
