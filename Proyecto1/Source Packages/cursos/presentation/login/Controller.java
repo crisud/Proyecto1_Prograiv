@@ -157,7 +157,7 @@ public class Controller extends HttpServlet
         HttpSession session = request.getSession(true);
         session.removeAttribute("usuario");
         session.invalidate();
-        return "/presentation/Index.jsp";
+        return home(request);
     }
 
 
