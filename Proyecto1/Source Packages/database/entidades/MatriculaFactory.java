@@ -19,7 +19,7 @@ import java.util.List;
 public class MatriculaFactory
 {
 
-    public static void update(Double nota, String id_grupo, String id_estudiante) throws SQLException, SQLException, IOException
+    public static void update(Double nota, String id_grupo, String id_estudiante) throws SQLException, IOException
     {
         matriculaDAO.actualizarMatri(nota, id_grupo, id_estudiante);
     }
