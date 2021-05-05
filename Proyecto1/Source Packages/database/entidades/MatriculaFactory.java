@@ -19,6 +19,12 @@ import java.util.List;
 public class MatriculaFactory
 {
 
+    public static void update(Double nota, String id_grupo, String id_estudiante) throws SQLException, SQLException, IOException
+    {
+        matriculaDAO.actualizarMatri(nota, id_grupo, id_estudiante);
+    }
+    
+    
     public static List<cursos.logic.Estudiante> recuperarEstudianteConIDGrupo(String id_grupo)
             throws SQLException, IOException //recuperar estu en base del grupo - (busca en las matriculas)
     {

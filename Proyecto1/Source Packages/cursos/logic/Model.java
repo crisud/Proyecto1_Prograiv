@@ -184,4 +184,9 @@ public class Model
     {
         return UsuarioFactory.listarProfesores();
     }
+    
+    public void updateMatri(Double nota, id_grupo, id_estu) throws SQLException, SQLException, IOException
+    {
+        MatriculaFactory.update(nota, id_grupo, id_estudiante);
+    }
 }

@@ -86,6 +86,22 @@ public class MatriculaDAO extends AbstractDAO<database.entidades.Matricula>
         return r;
     }
     
+    
+     
+    public void actualizarMatri(Double nota, String id_grupo, String id_estu) throws SQLException, IOException
+    {
+        try (Connection cnx = Database.getInstance().getConnection();
+                PreparedStatement stm = cnx.prepareStatement(getCRUD().getUpdateCmd())) {
+            stm.clearParameters();
+            stm.setDouble(1, nota);
+            stm.setString(2, id_estu);
+            stm.setString(3, id_grupo);
+            if (stm.executeUpdate() != 1) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+    
     protected static final String LIST_ID_GRUPO_CMD
             = "SELECT id_estudiante, id_grupo, nota FROM proyecto1.estudiantes_grupos "
             + "WHERE id_grupo = ?; ";
