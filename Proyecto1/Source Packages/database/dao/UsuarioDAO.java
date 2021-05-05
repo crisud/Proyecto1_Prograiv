@@ -6,10 +6,16 @@
 package database.dao;
 
 import database.AbstractDAO;
+import database.Database;
 import database.crud.UsuarioCRUD;
+import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -57,6 +63,25 @@ public class UsuarioDAO extends AbstractDAO<database.entidades.Usuario>
         stm.setString(4, value.getId());
     }
     
-     //= "UPDATE proyecto1.usuarios SET nombre = ?, correo = ?, telefono = ? "
-        //    + "WHERE id = ?; ";
+    public List<database.entidades.Usuario> listarProfesores() throws SQLException, IOException
+    {
+        List<database.entidades.Usuario> lista = new ArrayList<>();
+        try (Connection cnx = Database.getInstance().getConnection();
+                Statement stm = cnx.createStatement();
+                ResultSet rs = stm.executeQuery(LISTAR_PROFES_CMD))
+        {
+            while (rs.next()) 
+            {
+                lista.add(getRecord(rs));
+            }
+        }
+            
+        return lista;
+    }
+    
+    
+     protected static final String LISTAR_PROFES_CMD
+            = "SELECT id, nombre, correo, contrasena, telefono, rol, especialidad FROM proyecto1.usuarios "
+            + "WHERE rol = 'Profesor' "
+            + "ORDER BY id; ";
 }

@@ -6,7 +6,6 @@
 package cursos.presentation.estudiante;
 
 import cursos.logic.Estudiante;
-import cursos.logic.Usuario;
 
 /**
  *

@@ -84,6 +84,14 @@ public class MatriculaFactory
         return matri;
     }
 
+     public static void guardarMatricular(cursos.logic.Matricula ma) throws SQLException, IOException
+    {
+      
+        database.entidades.Matricula m = null;
+        m = new database.entidades.Matricula(ma.getEstudiante().getId(), ma.getGrupo().getId(), 0);
+        matriculaDAO.registar(m);
+    }
+     
 //public static void main(String[] args)
 //    {
 //        List<cursos.logic.Matricula> matri = null;

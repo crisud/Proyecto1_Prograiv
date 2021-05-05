@@ -5,12 +5,18 @@
  */
 package cursos.presentation.administrador;
 
+import cursos.logic.Curso;
+import cursos.logic.Grupo;
+import cursos.logic.Profesor;
+import database.entidades.CursoFactory;
+import database.entidades.GrupoFactory;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -22,42 +28,112 @@ public class Controller extends HttpServlet
             throws ServletException, IOException
     {
         String viewUrl = "";
-        
-        switch (request.getServletPath())
+        request.setAttribute("model", new Model());
+
+        switch (request.getServletPath()) // crear grupo - y ver grupos
         {
-            case "/presentation/administrador/cursos":
+            case "/presentation/administrador/cursos/show":
                 viewUrl = this.cursos(request);
                 break;
-            case "/presentation/administrador/profesores":
+            case "/presentation/administrador/profesores/show":
                 viewUrl = this.profesores(request);
                 break;
+            case "/presentation/administrador/cursos/update":
+                viewUrl = this.updateCurso(request);
+                break;
         }
-        
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
+
+        request.getRequestDispatcher(viewUrl).forward(request, response);
     }
 
     private String cursos(HttpServletRequest request)
     {
         return this.cursosAction(request);
     }
-    
+
     private String cursosAction(HttpServletRequest request)
     {
-        HttpSession session = request.getSession(true);
-        
-        
-        return "";
+        String viewUrl;
+        try
+        {
+            //HttpSession session = request.getSession(true);
+
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
+            List<Curso> cursos = domainModel.getCursos();
+            Model model = (Model) request.getAttribute("model");
+            model.setCursos(cursos);
+
+            //session.setAttribute("model", model); //puede quitarse
+            viewUrl = "/presentation/administrador/cursos/cursos.jsp";
+
+            return viewUrl;
+        } catch (Exception e)
+        {
+            viewUrl = "/presentation/Error.jsp";
+            return viewUrl;
+        }
+
     }
-    
+
     private String profesores(HttpServletRequest request)
     {
         return this.profesoresAction(request);
     }
-    
+
     private String profesoresAction(HttpServletRequest request)
     {
-        return "";
+        try
+        {
+            //HttpSession session = request.getSession(true);
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
+
+            Model model = (Model) request.getAttribute("model");
+            List<Profesor> profesores = domainModel.getProfesores();
+
+            model.setProfesores(profesores);
+
+            //session.setAttribute("model", model); //puede quitarse
+            String viewUrl = "/presentation/administrador/profesores/profesores.jsp";
+            return viewUrl;
+        } catch (Exception e)
+        {
+            String viewUrl = "/presentation/Error.jsp";
+            return viewUrl;
+        }
     }
+
+    public String updateCurso(HttpServletRequest request)
+    {
+        return this.updateCursoAction(request);
+    }
+
+
+    public String updateCursoAction(HttpServletRequest request)
+    {
+        String viewUrl;
+        try
+        {
+            //HttpSession session = request.getSession(true);
+            Model model = (Model) request.getAttribute("model");
+
+            String idCurso = request.getParameter("cursoId");
+            CursoFactory.actualizarOfertaCurso(idCurso);
+
+            cursos.logic.Model domainModel = cursos.logic.Model.instance();
+            List<Curso> cursos = domainModel.getCursos();
+
+            model.setCursos(cursos);
+
+            //request.setAttribute("model", model);
+            viewUrl = "/presentation/administrador/cursos/cursos.jsp"; 
+
+        } catch (IOException | SQLException ex)
+        {
+            viewUrl = "/presentation/Error.jsp";
+        }
+        return viewUrl;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -24,7 +24,7 @@ public class Model
     public final void reset()
     {
         this.setProfesores(new ArrayList<>());
-        this.setCuros(new ArrayList<>());
+        this.setCursos(new ArrayList<>());
     }
     
     public void setProfesores(List<Profesor> profesores)
@@ -32,10 +32,21 @@ public class Model
         this.profesores = profesores;
     }
     
-    public void setCuros(List<Curso> cursos)
+    public void setCursos(List<Curso> cursos)
     {
         this.cursos = cursos;
     }
+    
+    public List<Profesor> getProfesores()
+    {
+        return profesores;
+    }
+
+    public List<Curso> getCursos()
+    {
+        return cursos;
+    }
+    
     
     private List<Profesor> profesores;
     private List<Curso> cursos;

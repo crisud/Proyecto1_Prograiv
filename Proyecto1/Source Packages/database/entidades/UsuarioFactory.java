@@ -12,6 +12,8 @@ import database.dao.GrupoDAO;
 import database.dao.UsuarioDAO;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,26 @@ import java.sql.SQLException;
  */
 public class UsuarioFactory
 {
+    public static List<cursos.logic.Profesor> listarProfesores()
+    {
+        List<cursos.logic.Profesor>  profesores = new ArrayList<>();
+        
+        
+        try
+        {
+            for(database.entidades.Usuario p: usuarioDAO.listarProfesores())
+            {
+                profesores.add((Profesor) crearUsuario(p));
+            }
+        }
+        catch(IOException | SQLException ex)
+        {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+        
+        return profesores;
+    }
+    
 
     public static cursos.logic.Usuario recuperarUsuario(String id) throws SQLException, IOException
     {
@@ -109,8 +131,23 @@ public class UsuarioFactory
         }
         usuarioDAO.registar(u);
     }
-    // String id, String nombre, String contrasena, String correo, int telefono, String especialidad, String rol
+   
 
     private final static UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final static GrupoDAO grupoDAO = new GrupoDAO();
+    
+    
+//        public static void main(String[] args)
+//    {
+//        List<cursos.logic.Profesor> matri = null;
+//       
+//        matri = listarProfesores();
+//        
+//        if (matri != null)
+//        {
+//            for(cursos.logic.Profesor curso: matri)
+//            System.out.printf("Matri id: %s%n",curso.getEspecialidad());
+//            
+//        }
+//    }
 }

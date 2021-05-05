@@ -16,6 +16,32 @@ import java.util.List;
  */
 public class CursoFactory
 {
+    public static void guardarCurso(cursos.logic.Curso curso) throws SQLException, IOException
+    {
+        database.entidades.Curso c = null;
+        
+        c = new database.entidades.Curso(
+                curso.getId(),
+                curso.getNombre(),
+                curso.getTematica(),
+                curso.getPrecio(),
+                curso.enOferta()
+        );
+                
+                //String id, String nombre, String tematica, double precio, boolean enOferta
+        cursoDAO.registar(c);
+    }
+    
+    
+    
+    public static void actualizarOfertaCurso(String id) throws SQLException, IOException
+    {
+        database.entidades.Curso curso = cursoDAO.buscar(id);
+        
+        cursoDAO.actualizar(curso);
+        
+    }
+    
     public static List<cursos.logic.Curso> listarCursos()
     {
         List<cursos.logic.Curso> cursos = new ArrayList<>();

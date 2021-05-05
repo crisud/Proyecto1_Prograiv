@@ -54,11 +54,7 @@ public class CursoDAO extends AbstractDAO<database.entidades.Curso>
     @Override
     public void setUpdateParameters(PreparedStatement stm, database.entidades.Curso value) throws SQLException
     {
-        stm.setString(1, value.getNombre());
-        stm.setString(2, value.getTematica());
-        stm.setDouble(3, value.getPrecio());
-        stm.setBoolean(4, value.getEnOferta());
-        stm.setString(5, value.getId());
+        stm.setString(1, value.getId());
     }
     
     public List<database.entidades.Curso> listarCursosEnOferta() throws SQLException, IOException

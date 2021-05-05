@@ -4,13 +4,13 @@
 <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class = "navbar-brand" href="/Proyecto1/presentation/Index.jsp">
+                <a class = "navbar-brand" href="/Proyecto1/presentation/home">
                     <img src = "/Proyecto1/img/logo.png" alt = "imagenLogo" width="170">
                 </a>
            
                 <div class="collapse navbar-collapse" >
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li class="nav-item"><a class="nav-link px-2 link-light" href = "/Proyecto1/presentation/Index.jsp">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-2 link-light" href = "/Proyecto1/presentation/home">Home</a></li>
                         
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
                     <% } %>
                     <% if (usuario==null){%>
                         <a type="button" class="btn btn-outline-light " href = "/Proyecto1/presentation/login/show">Login</a>
-                        <a type="button" class="btn btn-danger" href = "/Proyecto1/presentation/login/Signup.jsp">Sign-up</a>
+                        <a type="button" class="btn btn-danger" href = "/Proyecto1/presentation/login/signup">Sign-up</a>
                     <% } %>
                 </div>
                 

@@ -4,6 +4,7 @@ import database.entidades.CursoFactory;
 import database.entidades.GrupoFactory;
 import database.entidades.MatriculaFactory;
 import database.entidades.UsuarioFactory;
+import database.entidades.GrupoFactory;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,28 +30,6 @@ public class Model
 
     private Model()
     {
-        usuarios = new HashMap(); //quitar hash map
-        matriculas = new ArrayList();
-        //(String id, String pass, String role, String cedula, String nombre, String correo, Integer telefono)
-
-        usuarios.put("111", new Estudiante("111", "111", "Estudiante", "J.Perez", "JPerez@gmail.com", 12345678));
-        usuarios.put("222", new Usuario("222", "222", "Profesor", "A.Cortes", "ACortes@gmail.com", 88842828));
-        usuarios.put("333", new Usuario("333", "333", "Administrador", "B.Diaz", "BDiaz@gmail.com", 78654556));
-
-        //Grupo(String id, String horario, Profesor profesor, Curso curso)
-        //Matricula(Estudiante estudiante, Grupo grupo, Double nota)
-        //Curso(String id, String nombre, String tematica, double precio, boolean enOferta)
-        matriculas.add(new Matricula(new Estudiante("111", "111", "Estudiante", "J.Perez", "JPerez@gmail.com", 12345678),
-                new Grupo("122", "4:00 pm a 5:00 pm", new Profesor("222", "222", "Profesor", "A.Cortes", "ACortes@gmail.com", 88842828, "matematica"),
-                        new Curso("A5", "Estadistica", "Es un surso de mate", 15000, false)), 0.0));
-
-        matriculas.add(new Matricula(new Estudiante("111", "111", "Estudiante", "J.Perez", "JPerez@gmail.com", 12345678),
-                new Grupo("122", "2:00 pm a 3:00 pm", new Profesor("222", "222", "Profesor", "Jose", "ACortes@gmail.com", 88842828, "matematica"),
-                        new Curso("A5", "Infoematica", "Es un curso de tecnologia", 15000, true)), 0.0));
-
-        matriculas.add(new Matricula(new Estudiante("111", "111", "Estudiante", "J.Perez", "JPerez@gmail.com", 12345678),
-                new Grupo("123", "8:00 pm a 9:00 pm", new Profesor("222", "222", "Profesor", "Laura", "ACortes@gmail.com", 88842828, "matematica"),
-                        new Curso("A5", "Ingles", "Es un curso de idiomas", 15000, false)), 0.0));
     }
 
     public Usuario usuarioFindPass(String id, String pass) throws Exception
@@ -90,8 +69,25 @@ public class Model
         UsuarioFactory.guardarUsuario(u);
 
     }
+    
+     public void insertMatricula(Matricula m) throws SQLException, IOException
+    {
+       
+            MatriculaFactory.guardarMatricular(m);
+        
 
+    }
 
+     public void insertGrupo(Grupo grupo)throws SQLException, IOException
+     {
+         GrupoFactory.guardarGrupo(grupo);
+     }
+     
+     public void insertCurso(Curso curso) throws SQLException, IOException
+     {
+         CursoFactory.guardarCurso(curso);
+     }
+     
     public List<Matricula> getMatriculas(String id_estudiante)
     { //base
         List<Matricula> ma = null;
@@ -105,36 +101,87 @@ public class Model
         return ma;
     }
 
-    public List<Curso> getCursos()
-    {
+        
+    public List<Grupo> getGrupos(String id_profesor){
+        try
+        {
+            return GrupoFactory.recuperarGrupos_profe(id_profesor);
+        }catch(IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+    
+    public List<Grupo> getGruposNota(String id_profesor){
+        try
+        {
+            return GrupoFactory.recuperarGrupos_profeNota(id_profesor);
+        }catch(IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+    
+    public List<Estudiante> getEstGrupo(String id_grupo){
+        try{
+            return MatriculaFactory.recuperarEstudianteConIDGrupo(id_grupo);
+        }catch(IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+    
+    public List<Curso> getCursos(){
         List<Curso> cu;
         cu = CursoFactory.listarCursos();
         return cu;
     }
-
-    public List<Curso> cursosEnOferta()
-    {
+    
+    public Curso getCurso(String id){
         List<Curso> cu;
-        cu = CursoFactory.listarCursosEnOferta();
-        return cu;
+        cu = CursoFactory.listarCursos();
+        for(Curso a:cu){
+            if(id.equals(a.getId())){
+                return a;
+            }
+        }
+        return null;
     }
-
+    
+    
+     public List<Curso> cursosEnOferta()
+     {
+         List<Curso> cu;
+         cu = CursoFactory.listarCursosEnOferta();
+         return cu;
+     }
+     
+     //otra version
+      public Curso getCurso2(String id) throws SQLException, IOException{
+         Curso cur = CursoFactory.recuperarCurso(id);
+         return cur;
+     }
+     
+     public List<Grupo> getGruposCurso(String id){
+         List<Grupo> gu;
+         gu = GrupoFactory.listarGruposPorIDCurso(id);
+        return gu;
+     }
+     
+     public Grupo getGrupo(String id) throws SQLException, IOException{
+        return GrupoFactory.recuperarGrupo(id);
+     }
+     
+    public List<Matricula> getMatriculas(){
+        return MatriculaFactory.listarMatriculas();
+    }
+    
+    
     public List<Profesor> getProfesores()
     {
-        List<Profesor> profesores;
-        profesores = UsuarioFactory.listarProfesores();
-
-        return profesores;
+        return UsuarioFactory.listarProfesores();
     }
-
-    public void insertGrupo(Grupo grupo) throws SQLException, IOException
-    {
-        GrupoFactory.guardarGrupo(grupo);
-    }
-
-    public void insertCurso(Curso curso) throws SQLException, IOException
-    {
-        CursoFactory.guardarCurso(curso);
-    }
-
 }

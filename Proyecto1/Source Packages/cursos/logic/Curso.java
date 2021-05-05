@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Curso
 {
-   
+
     public Curso(String id, String nombre, String tematica, double precio, boolean enOferta)
     {
         this.id = id;
@@ -23,35 +23,42 @@ public class Curso
         this.precio = precio;
         this.enOferta = enOferta;
     }
-  
-    public Curso(){
-        
+
+    public Curso()
+    {
+
     }
-    
+
     public String getId()
     {
         return id;
     }
-    
+
     public String getNombre()
     {
         return nombre;
     }
- 
-      public String getTematica()
+
+    public String getTematica()
     {
         return tematica;
     }
-      
-      public double getPrecio()
+
+    public double getPrecio()
     {
         return precio;
     }
-      
+
+    public boolean enOferta()
+    {
+        return enOferta;
+    }
+
+
     private String id;
     private String nombre;
     private String tematica;
     private double precio;
     private boolean enOferta;
-    
+
 }

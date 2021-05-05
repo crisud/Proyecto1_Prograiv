@@ -47,6 +47,6 @@ public class CursoCRUD extends AbstractCRUD
             = "SELECT id, nombre, tematica, precio, enOferta FROM proyecto1.cursos "
             + "WHERE id = ?; ";
     protected static final String UPDATE_CMD // necesario??
-            = "UPDATE proyecto1.cursos SET nombre = ?, tematica = ?, precio = ?, enOferta = ? "
+            = "UPDATE proyecto1.cursos SET enOferta = NOT enOferta "
             + "WHERE id = ?; ";
 }

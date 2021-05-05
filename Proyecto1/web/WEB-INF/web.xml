@@ -4,10 +4,39 @@
         <servlet-name>AdministradorController</servlet-name>
         <servlet-class>cursos.presentation.administrador.Controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GrupoAdmiController</servlet-name>
+        <servlet-class>cursos.presentation.administrador.grupo.Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CursoAdmiController</servlet-name>
+        <servlet-class>cursos.presentation.administrador.curso.Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfesorAdmiController</servlet-name>
+        <servlet-class>cursos.presentation.administrador.profesor.Controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdministradorController</servlet-name>
-        <url-pattern>/presentation/estudiante/detalles/detalles.jsp</url-pattern>
-        <url-pattern>/presentation/administrador/profesores</url-pattern>
+        <url-pattern>/presentation/administrador/cursos/show</url-pattern>
+        <url-pattern>/presentation/administrador/profesores/show</url-pattern>
+        <url-pattern>/presentation/administrador/cursos/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GrupoAdmiController</servlet-name>
+        <url-pattern>/presentation/administrador/grupos/show</url-pattern>
+        <url-pattern>/presentation/administrador/grupos/create/show</url-pattern>
+        <url-pattern>/presentation/administrador/grupos/create/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CursoAdmiController</servlet-name>
+        <url-pattern>/presentation/administrador/cursos/create/show</url-pattern>
+        <url-pattern>/presentation/administrador/cursos/create/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfesorAdmiController</servlet-name>
+        <url-pattern>/presentation/administrador/profesor/create/show</url-pattern>
+        <url-pattern>/presentation/administrador/profesor/create/create</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

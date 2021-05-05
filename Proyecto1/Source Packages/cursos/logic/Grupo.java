@@ -41,6 +41,8 @@ public class Grupo
              return profesor.getNombre();
          return "Null";
     }
+     
+     public String getIdProfe(){return profesor.getId();}
     
     public String getNombreCurso(){
         if(curso!=null)
@@ -54,7 +56,10 @@ public class Grupo
         estudiantes.add(e);
     }
     
-   
+   public String getIdCurso()
+   {
+       return curso.getId();
+   }
     
     private String id;
     private String horario;

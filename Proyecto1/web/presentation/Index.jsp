@@ -1,4 +1,14 @@
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="cursos.logic.Curso"%>
+
+
+<%
+    
+    List<Curso> cursos = (List<Curso>) request.getAttribute("cursos");;
+%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,66 +30,26 @@
         </div>
         
         <div class = "row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4">
+            
+            <% for(Curso c : cursos){%>
             <div class = "col">
                 <div class="card shadow-sm " style="width: 18rem;">
                     <img src="/Proyecto1/img/cursoPintura.jpg" class="card-img-top" alt="cursoPintura">
                     <div class="card-body">
                         
-                        <h5 class="card-title">Pintura</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title"><%=c.getNombre()%></h5>
+                        <h5 class="card-title">Codigo: <%=c.getId()%></h5>
+                        <p class="card-text">Precio: <%=c.getPrecio()%></p>
+                        <%if(c.enOferta()){%>
+                        <br>
+                        <p class="card-text">En oferta</p>
+                        <%}%>
                         <a href="#" class="btn btn-danger">Matricular</a>
                         <a href="#" class="btn btn-outline-danger">Ver detalles</a>
                     </div>
                 </div>
             </div>
-            <div class = "col" >
-                <div class="card shadow-sm" style="width: 18rem;">
-                    <img src="/Proyecto1/img/cursoPintura.jpg" class="card-img-top" alt="cursoPintura">
-                    <div class="card-body">
-                        
-                        <h5 class="card-title">Pintura</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-            <div class = "col">
-                <div class="card shadow-sm" style="width: 18rem;">
-                    <img src="/Proyecto1/img/cursoPintura.jpg" class="card-img-top" alt="cursoPintura">
-                    <div class="card-body">
-                        
-                        <h5 class="card-title">Pintura</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-            <div class = "col">
-                <div class="card shadow-sm" style="width: 18rem;">
-                    <img src="/Proyecto1/img/cursoPintura.jpg" class="card-img-top" alt="cursoPintura">
-                    <div class="card-body">
-                        
-                        <h5 class="card-title">Pintura</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-            <div class = "col">
-                <div class="card shadow-sm" style="width: 18rem;">
-                    <img src="/Proyecto1/img/cursoPintura.jpg" class="card-img-top" alt="cursoPintura">
-                    <div class="card-body">
-                        
-                        <h5 class="card-title">Pintura</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-danger">Matricular</a>
-                        <a href="#" class="btn btn-outline-danger">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
+            <%}%>
         </div>
         
     </body>
