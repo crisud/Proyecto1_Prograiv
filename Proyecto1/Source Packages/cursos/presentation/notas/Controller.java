@@ -134,7 +134,7 @@ public class Controller extends HttpServlet {
         try{
             domainModel.updateMatri(notita, actual, id_estu);
         }catch(SQLException|IOException b){
-            
+            return "/presentation/person/profile";
         }
         return "/presentation/person/profile";
     }
